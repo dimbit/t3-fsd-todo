@@ -1,3 +1,5 @@
+import { ThemeToggleButton } from '@/features/themeToggle'
+
 type Props = {
 	toggleCollapsed: () => void
 	isCollapsed: boolean
@@ -16,6 +18,7 @@ export const Sidebar = ({ isCollapsed, toggleCollapsed }: Props) => {
 				<li>Option 2</li>
 				<li>Option 3</li>
 			</ul>
+			<ThemeToggleButton />
 		</aside>
 	)
 }
