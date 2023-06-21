@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { Layout } from '@/widgets/layout'
+import { TasksList } from '@/widgets/tasks-list'
 
 export default function Home() {
 	return (
@@ -15,7 +16,9 @@ export default function Home() {
 					href='/favicon.ico'
 				/>
 			</Head>
-			<Layout>list</Layout>
+			<Layout>
+				<TasksList />
+			</Layout>
 		</>
 	)
 }
