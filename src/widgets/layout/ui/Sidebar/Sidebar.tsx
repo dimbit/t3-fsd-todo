@@ -1,4 +1,4 @@
-import { ThemeToggleButton } from '@/features/themeToggle'
+import { ThemeToggleButton } from '@/features/theme-toggle'
 import { NavigationBar } from './NavigationBar'
 
 type Props = {
