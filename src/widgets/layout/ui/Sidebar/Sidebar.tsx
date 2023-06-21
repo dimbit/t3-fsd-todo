@@ -1,4 +1,5 @@
 import { ThemeToggleButton } from '@/features/themeToggle'
+import { NavigationBar } from './NavigationBar'
 
 type Props = {
 	toggleCollapsed: () => void
@@ -13,11 +14,7 @@ export const Sidebar = ({ isCollapsed, toggleCollapsed }: Props) => {
 				</button>
 				{isCollapsed ? null : <div>profile</div>}
 			</div>
-			<ul>
-				<li>Option 1</li>
-				<li>Option 2</li>
-				<li>Option 3</li>
-			</ul>
+			<NavigationBar />
 			<ThemeToggleButton />
 		</aside>
 	)
