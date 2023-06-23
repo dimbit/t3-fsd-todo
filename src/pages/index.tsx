@@ -1,5 +1,8 @@
 import Head from 'next/head'
 import { signIn } from 'next-auth/react'
+import { ROUTES } from '@/shared/routes'
+import type { GetServerSideProps } from 'next'
+import { getServerAuthSession } from '../server/auth'
 
 export default function Home() {
 	return (
@@ -26,4 +29,20 @@ export default function Home() {
 			</div>
 		</>
 	)
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+	const session = await getServerAuthSession(ctx)
+
+	if (session) {
+		return {
+			redirect: {
+				destination: ROUTES.list.calcUrl(),
+				permanent: false,
+			},
+		}
+	}
+	return {
+		props: {},
+	}
 }
