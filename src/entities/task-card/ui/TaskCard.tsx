@@ -2,7 +2,7 @@ import { Card } from '@/shared/ui-kit'
 
 type Props = {
 	title: string
-	description?: string
+	description?: string | null
 }
 export const TaskCard = ({ title, description }: Props) => {
 	return (
