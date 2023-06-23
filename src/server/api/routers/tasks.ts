@@ -14,11 +14,16 @@ export const tasksRouter = createTRPCRouter({
 			}
 		}),
 
-	getAll: publicProcedure.query(async ({ ctx }) => {
-		const tasks = await ctx.prisma.task.findMany()
+	getAll: protectedProcedure.query(async ({ ctx }) => {
+		const userId = ctx.session.user.id
+		const tasks = await ctx.prisma.task.findMany({
+			where: {
+				userId,
+			},
+		})
 		return tasks
 	}),
-	getOne: publicProcedure
+	getOne: protectedProcedure
 		.input(z.object({ id: z.string() }))
 		.query(async ({ ctx, input }) => {
 			const task = ctx.prisma.task.findUnique({
