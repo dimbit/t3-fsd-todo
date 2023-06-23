@@ -8,6 +8,7 @@ export const TasksList = () => {
 		isLoading,
 		error,
 	} = api.tasks.getAll.useQuery(undefined, {
+		retry: false,
 		refetchOnWindowFocus: false,
 		staleTime: Infinity,
 		keepPreviousData: true,
