@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Layout } from '@/widgets/layout'
+import { signIn } from 'next-auth/react'
 
 export default function Home() {
 	return (
@@ -15,7 +15,15 @@ export default function Home() {
 					href='/favicon.ico'
 				/>
 			</Head>
-			<Layout>home</Layout>
+			<div className={'flex h-full items-center justify-center'}>
+				<button
+					className={'border border-slate-800'}
+					// eslint-disable-next-line @typescript-eslint/no-misused-promises
+					onClick={() => signIn()}
+				>
+					Sign In
+				</button>
+			</div>
 		</>
 	)
 }
