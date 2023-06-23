@@ -1,6 +1,7 @@
 import { ThemeToggleButton } from '@/features/theme-toggle'
 import { NavigationBar } from './NavigationBar'
 import { signOut } from 'next-auth/react'
+import { ProfilePreview } from '@/entities/profile-preview'
 
 type Props = {
 	toggleCollapsed: () => void
@@ -20,7 +21,7 @@ export const Sidebar = ({ isCollapsed, toggleCollapsed }: Props) => {
 				<button onClick={toggleCollapsed}>
 					{isCollapsed ? 'show' : 'hide'}
 				</button>
-				{isCollapsed ? null : <div>profile</div>}
+				{isCollapsed ? null : <ProfilePreview />}
 			</div>
 			<NavigationBar />
 			<ThemeToggleButton />
