@@ -1,10 +1,17 @@
 import { useSession } from 'next-auth/react'
 import { Avatar } from '@/shared/ui-kit'
 
-export const ProfilePreview = () => {
+type Props = {
+	className?: string
+}
+export const ProfilePreview = ({ className }: Props) => {
 	const { data: session } = useSession()
 	return (
-		<div className={'grid grid-cols-auto-1fr grid-rows-2 gap-x-2'}>
+		<div
+			className={`grid grid-cols-auto-1fr grid-rows-2 gap-x-2 ${
+				className ?? ''
+			}`}
+		>
 			<Avatar
 				src={session?.user.image}
 				name={session?.user.name}
@@ -13,7 +20,11 @@ export const ProfilePreview = () => {
 			<span className={'overflow-hidden text-ellipsis font-bold'}>
 				{session?.user.name}
 			</span>
-			<span className={'overflow-hidden text-ellipsis'}>
+			<span
+				className={
+					'overflow-hidden text-ellipsis text-sm text-neutral-500 dark:text-gray-300'
+				}
+			>
 				{session?.user.email}
 			</span>
 		</div>
