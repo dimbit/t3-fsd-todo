@@ -4,6 +4,8 @@ type Props = {
 
 export const Card = ({ children }: Props) => {
 	return (
-		<div className={'rounded-xl border border-slate-300 p-4'}>{children}</div>
+		<div className={'rounded-xl bg-white p-4 drop-shadow dark:bg-neutral-700'}>
+			{children}
+		</div>
 	)
 }
