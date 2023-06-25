@@ -1,8 +1,8 @@
 import { ThemeToggleButton } from '@/features/theme-toggle'
 import { NavigationBar } from '@/features/navigation'
-import { signOut } from 'next-auth/react'
 import { ProfilePreview } from '@/entities/profile-preview'
 import clsx from 'clsx'
+import { SignOutButton } from '@/features/authentication'
 
 type Props = {
 	toggleCollapsed: () => void
@@ -31,12 +31,7 @@ export const Sidebar = ({ isCollapsed, toggleCollapsed }: Props) => {
 			</Section>
 			<Section>
 				<ThemeToggleButton />
-				<button
-					// eslint-disable-next-line @typescript-eslint/no-misused-promises
-					onClick={() => signOut()}
-				>
-					Sign out
-				</button>
+				<SignOutButton />
 			</Section>
 		</aside>
 	)
