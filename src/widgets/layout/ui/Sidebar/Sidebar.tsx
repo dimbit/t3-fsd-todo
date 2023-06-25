@@ -3,6 +3,7 @@ import { NavigationBar } from '@/features/navigation'
 import { ProfilePreview } from '@/entities/profile-preview'
 import clsx from 'clsx'
 import { SignOutButton } from '@/features/authentication'
+import { Switch } from '@/shared/ui-kit'
 
 type Props = {
 	toggleCollapsed: () => void
@@ -45,7 +46,7 @@ const Section = ({ children, className }: SectionProps) => {
 	return (
 		<div
 			className={clsx([
-				'flex flex-col border-b border-b-neutral-300 p-2',
+				'grid grid-flow-row content-start gap-4 border-b border-b-neutral-300 px-2 py-4',
 				'last:border-b-0 dark:border-b-neutral-600',
 				className,
 			])}
