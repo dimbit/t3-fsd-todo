@@ -30,6 +30,7 @@ export const NavigationBar = () => {
 							className={clsx([
 								'grid w-full grid-flow-col justify-start gap-2 rounded px-2 py-1 text-neutral-500',
 								'hover:bg-neutral-100 hover:text-current',
+								'dark:text-neutral-300 dark:hover:bg-neutral-600 dark:hover:text-neutral-100',
 							])}
 						>
 							{<Icon className={'stroke-current'} />}

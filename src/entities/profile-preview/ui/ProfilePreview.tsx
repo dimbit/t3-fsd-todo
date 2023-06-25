@@ -22,7 +22,7 @@ export const ProfilePreview = ({ className }: Props) => {
 			</span>
 			<span
 				className={
-					'overflow-hidden text-ellipsis text-sm text-neutral-500 dark:text-gray-300'
+					'overflow-hidden text-ellipsis text-sm text-neutral-500 dark:text-neutral-300'
 				}
 			>
 				{session?.user.email}
