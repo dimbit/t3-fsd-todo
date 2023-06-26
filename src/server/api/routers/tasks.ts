@@ -20,6 +20,9 @@ export const tasksRouter = createTRPCRouter({
 			where: {
 				userId,
 			},
+			include: {
+				status: true,
+			},
 		})
 		return tasks
 	}),
