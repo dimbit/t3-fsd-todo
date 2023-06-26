@@ -4,11 +4,7 @@ import { ROUTES } from '@/shared/routes'
 import { KanbanScreen } from '@/screens/kanban'
 
 export default function Kanban() {
-	return (
-		<>
-			<KanbanScreen />
-		</>
-	)
+	return <KanbanScreen />
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
