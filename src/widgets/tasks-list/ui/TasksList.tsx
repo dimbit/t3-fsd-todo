@@ -1,24 +1,18 @@
 import { TaskCard } from '@/entities/task-card'
-import { api } from '@/shared/api'
 import { LoadingState } from '@/shared/ui-kit'
+import type { Task } from '@prisma/client'
 
-export const TasksList = () => {
-	const {
-		data: tasks,
-		isLoading,
-		error,
-	} = api.tasks.getAll.useQuery(undefined, {
-		retry: false,
-		refetchOnWindowFocus: false,
-		staleTime: Infinity,
-		keepPreviousData: true,
-	})
-
+type Props = {
+	tasks: Task[]
+	isLoading?: boolean
+	error?: string
+}
+export const TasksList = ({ tasks = [], isLoading, error }: Props) => {
 	return (
 		<div className={'flex w-full flex-col p-4'}>
 			<LoadingState
 				isLoading={isLoading}
-				error={error?.message}
+				error={error}
 			>
 				{tasks && tasks.length > 0 ? (
 					<div className={'flex flex-col gap-4'}>
