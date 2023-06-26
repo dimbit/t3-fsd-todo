@@ -32,6 +32,7 @@ export const KanbanScreen = () => {
 								tasks={tasks}
 								isLoading={isLoading}
 								error={error?.message}
+								status={status}
 							/>
 						</>
 					)
