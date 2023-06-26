@@ -1,16 +1,10 @@
 import { ROUTES } from '@/shared/routes'
 import type { GetServerSideProps } from 'next'
 import { getServerAuthSession } from '../server/auth'
-import { SignInButton } from '@/features/authentication'
+import { HomeScreen } from '@/screens/home'
 
 export default function Home() {
-	return (
-		<>
-			<div className={'flex h-full items-center justify-center'}>
-				<SignInButton />
-			</div>
-		</>
-	)
+	return <HomeScreen />
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
