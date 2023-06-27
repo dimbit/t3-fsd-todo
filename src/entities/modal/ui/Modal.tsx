@@ -1,8 +1,7 @@
 import { createPortal } from 'react-dom'
 import { MODAL_ROOT_NODE_ID } from '../model'
 import { Card } from '@/shared/ui-kit/Card'
-
-const modalRoot = document.getElementById(MODAL_ROOT_NODE_ID) ?? document.body
+import { useState, useEffect } from 'react'
 
 type Props = {
 	isOpen: boolean
@@ -10,8 +9,17 @@ type Props = {
 	children?: React.ReactNode
 }
 export const Modal = ({ isOpen, children }: Props) => {
-	if (isOpen) {
-		return createPortal(<Card>modal{children}</Card>, modalRoot)
+	const [isMounted, setIsMounted] = useState(false)
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
+
+	if (isOpen && isMounted) {
+		return createPortal(
+			<Card>modal{children}</Card>,
+			document.getElementById(MODAL_ROOT_NODE_ID) ?? document.body,
+		)
 	}
+
 	return null
 }
