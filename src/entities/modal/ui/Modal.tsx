@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom'
 import { MODAL_ROOT_NODE_ID } from '../model'
 import { Card } from '@/shared/ui-kit/Card'
-import { useIsMounted, useCloseModal } from '../model'
+import { usePreventBodyScroll, useIsMounted, useCloseModal } from '../model'
 
 type Props = {
 	isOpen: boolean
@@ -11,6 +11,7 @@ type Props = {
 
 export const Modal = ({ isOpen, onClose, children }: Props) => {
 	const isMounted = useIsMounted()
+	usePreventBodyScroll(isOpen)
 	const { onBackgroundClick } = useCloseModal(onClose)
 
 	if (isOpen && isMounted) {
