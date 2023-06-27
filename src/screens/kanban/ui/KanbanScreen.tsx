@@ -23,18 +23,16 @@ export const KanbanScreen = () => {
 
 	return (
 		<Layout>
-			<div className={'grid grid-flow-col'}>
-				{Object.entries(tasksByStatus).map(([status, tasks]) => {
+			<div className={'grid grid-flow-col overflow-auto'}>
+				{tasksByStatus.map(({ status, tasks }) => {
 					return (
-						<>
-							<TasksList
-								key={status}
-								tasks={tasks}
-								isLoading={isLoading}
-								error={error?.message}
-								status={status}
-							/>
-						</>
+						<TasksList
+							key={status.id}
+							tasks={tasks}
+							isLoading={isLoading}
+							error={error?.message}
+							status={status}
+						/>
 					)
 				})}
 			</div>
