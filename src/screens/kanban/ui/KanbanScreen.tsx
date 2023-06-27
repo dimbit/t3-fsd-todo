@@ -23,7 +23,7 @@ export const KanbanScreen = () => {
 
 	return (
 		<Layout>
-			<div className={'grid grid-flow-col overflow-auto'}>
+			<div className={'grid grid-flow-col gap-4 overflow-auto p-4'}>
 				{tasksByStatus.map(({ status, tasks }) => {
 					return (
 						<TasksList

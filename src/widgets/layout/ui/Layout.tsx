@@ -1,6 +1,7 @@
 import { Sidebar } from './Sidebar'
 import clsx from 'clsx'
 import { useState } from 'react'
+import { Header } from './Header'
 
 type Props = {
 	children?: React.ReactNode
@@ -19,7 +20,7 @@ export const Layout = ({ children }: Props) => {
 		<>
 			<main
 				className={clsx({
-					'grid-col grid h-full': true,
+					'grid-col grid h-full grid-rows-auto-1fr': true,
 					'grid-cols-sidebar': !sidebarIsCollapsed,
 					'grid-cols-sidebar-collapsed': sidebarIsCollapsed,
 					'transition-[grid-template-columns]': true,
@@ -28,7 +29,9 @@ export const Layout = ({ children }: Props) => {
 				<Sidebar
 					isCollapsed={sidebarIsCollapsed}
 					toggleCollapsed={toggleSidebarCollapsed}
+					className={'row-start-1 row-end-3'}
 				/>
+				<Header />
 				{children}
 			</main>
 		</>

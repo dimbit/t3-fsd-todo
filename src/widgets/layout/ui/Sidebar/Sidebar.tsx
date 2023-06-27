@@ -3,18 +3,19 @@ import { NavigationBar } from '@/features/navigation'
 import { ProfilePreview } from '@/entities/profile-preview'
 import clsx from 'clsx'
 import { SignOutButton } from '@/features/authentication'
-import { Switch } from '@/shared/ui-kit'
 
 type Props = {
 	toggleCollapsed: () => void
 	isCollapsed: boolean
+	className?: string
 }
-export const Sidebar = ({ isCollapsed, toggleCollapsed }: Props) => {
+export const Sidebar = ({ isCollapsed, toggleCollapsed, className }: Props) => {
 	return (
 		<aside
-			className={
-				'grid h-full grid-rows-[auto_1fr_auto] overflow-hidden bg-white drop-shadow-sm dark:bg-neutral-700'
-			}
+			className={clsx([
+				'grid h-full grid-rows-[auto_1fr_auto] overflow-hidden bg-white drop-shadow-sm dark:bg-neutral-700',
+				className,
+			])}
 		>
 			<Section>
 				<ProfilePreview
