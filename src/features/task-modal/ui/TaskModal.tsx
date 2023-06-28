@@ -11,7 +11,7 @@ export const TaskModal = () => {
 	const task = allTasks?.find((entity) => entity.id === taskId)
 
 	if (!task) {
-		return
+		return null
 	}
 
 	return (
