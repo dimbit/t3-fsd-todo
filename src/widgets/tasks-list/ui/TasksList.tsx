@@ -2,6 +2,7 @@ import { TaskCard } from '@/entities/task-card'
 import { LoadingState } from '@/shared/ui-kit'
 import type { Status, Task } from '@prisma/client'
 import { api } from '@/shared/api'
+import { useTaskModalStore } from '@/features/task-modal/model'
 
 type Props = {
 	tasks: Task[]
@@ -25,6 +26,14 @@ export const TasksList = ({ tasks = [], isLoading, error, status }: Props) => {
 		})
 	}
 
+	const { openTaskEditingModal } = useTaskModalStore()
+	const handleOpenTaskModal = (event: React.MouseEvent<HTMLDivElement>) => {
+		const taskId = event.currentTarget.dataset.taskId
+		if (taskId) {
+			openTaskEditingModal(taskId)
+		}
+	}
+
 	return (
 		<div className={'flex flex-col gap-2'}>
 			<h2 className={'px-4 font-bold'}>{status.name}</h2>
@@ -39,6 +48,8 @@ export const TasksList = ({ tasks = [], isLoading, error, status }: Props) => {
 								<TaskCard
 									{...task}
 									key={task.id}
+									data-task-id={task.id}
+									onClick={handleOpenTaskModal}
 								/>
 							)
 						})}
