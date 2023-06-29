@@ -1,7 +1,6 @@
 import { TaskCard } from '@/entities/task-card'
 import { LoadingState } from '@/shared/ui-kit'
 import type { Status, Task } from '@prisma/client'
-import { api } from '@/shared/api'
 import { useTaskModalStore } from '@/features/task-modal/model'
 
 type Props = {
@@ -11,27 +10,23 @@ type Props = {
 	status: Status
 }
 export const TasksList = ({ tasks = [], isLoading, error, status }: Props) => {
-	const trpcUtils = api.useContext()
-	const addTaskMutation = api.tasks.createOne.useMutation({
-		onSuccess: async () => {
-			await trpcUtils.tasks.getAll.invalidate()
-		},
-	})
+	const { openTaskEditingModal, openTaskCreationModal } = useTaskModalStore()
 
-	const handleMutation = () => {
-		addTaskMutation.mutate({
-			title: 'Created task',
-			description: 'Created task description',
-			statusId: status.id,
-		})
+	const handleClickTaskCard = (taskData: {
+		id: string
+		title: string
+		description?: string | null
+	}) => {
+		if (!taskData.id) {
+			return
+		}
+		openTaskEditingModal(taskData)
 	}
 
-	const { openTaskEditingModal } = useTaskModalStore()
-	const handleOpenTaskModal = (event: React.MouseEvent<HTMLDivElement>) => {
-		const taskId = event.currentTarget.dataset.taskId
-		if (taskId) {
-			openTaskEditingModal(taskId)
-		}
+	const handleClickAddTask = () => {
+		openTaskCreationModal({
+			statusId: status.id,
+		})
 	}
 
 	return (
@@ -46,15 +41,16 @@ export const TasksList = ({ tasks = [], isLoading, error, status }: Props) => {
 						{tasks?.map((task) => {
 							return (
 								<TaskCard
-									{...task}
+									id={task.id}
+									title={task.title}
+									description={task.description}
 									key={task.id}
-									data-task-id={task.id}
-									onClick={handleOpenTaskModal}
+									onClick={handleClickTaskCard}
 								/>
 							)
 						})}
 					</div>
-					<button onClick={handleMutation}>add +</button>
+					<button onClick={handleClickAddTask}>add +</button>
 				</LoadingState>
 			</div>
 		</div>

@@ -1,17 +1,19 @@
 import { Card } from '@/shared/ui-kit'
 
-type Props = {
+type TaskProps = {
+	id: string
 	title: string
 	description?: string | null
-	onClick: React.MouseEventHandler<HTMLDivElement>
-	'data-task-id': string
 }
-export const TaskCard = ({ title, description, onClick, ...props }: Props) => {
+type Props = TaskProps & {
+	onClick: (props: TaskProps) => void
+}
+export const TaskCard = ({ id, title, description, onClick }: Props) => {
+	const handleClick = () => {
+		onClick({ id, title, description })
+	}
 	return (
-		<Card
-			onClick={onClick}
-			data-task-id={props['data-task-id']}
-		>
+		<Card onClick={handleClick}>
 			<h5 className={'font-bold'}>{title}</h5>
 			<p>{description}</p>
 		</Card>
