@@ -1,16 +1,20 @@
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
+import type { Task } from '@prisma/client'
 
-type ModalType = 'editing' | 'creation'
+type Mode = 'editing' | 'creation'
+type InitialTaskData = Partial<Pick<Task, 'id' | 'title' | 'description'>>
 type State = {
-	taskId?: string
 	isOpen: boolean
-	modalType?: ModalType
+	mode?: Mode
+	initialTaskData: InitialTaskData | null
 }
 type Actions = {
-	openTaskEditingModal: (taskId?: string) => void
-	openTaskCreationModal: () => void
+	openTaskEditingModal: (
+		initialTaskData: InitialTaskData & Required<Pick<InitialTaskData, 'id'>>,
+	) => void
+	openTaskCreationModal: (initialTaskData: Omit<InitialTaskData, 'id'>) => void
 	closeModal: () => void
 }
 
@@ -18,24 +22,29 @@ export const useTaskModalStore = create<State & Actions>()(
 	persist(
 		devtools(
 			immer((set) => ({
-				isOpen: true,
+				isOpen: false,
+				initialTaskData: null,
+				mode: undefined,
+
 				closeModal: () => {
 					set((state) => {
 						state.isOpen = false
-						state.modalType = undefined
+						state.initialTaskData = null
+						delete state.mode
 					})
 				},
-				openTaskEditingModal: (taskId) => {
+				openTaskEditingModal: (initialTaskData) => {
 					set((state) => {
 						state.isOpen = true
-						state.modalType = 'editing'
-						state.taskId = taskId
+						state.mode = 'editing'
+						state.initialTaskData = initialTaskData
 					})
 				},
-				openTaskCreationModal: () => {
+				openTaskCreationModal: (initialTaskData) => {
 					set((state) => {
-						state.modalType = 'creation'
+						state.mode = 'creation'
 						state.isOpen = true
+						state.initialTaskData = initialTaskData
 					})
 				},
 			})),
