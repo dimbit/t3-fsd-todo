@@ -5,30 +5,37 @@ import { Form } from './Form'
 import type { FormData } from '../model'
 
 export const TaskModal = () => {
-	const { taskId, isOpen, closeModal } = useTaskModalStore()
+	const { isOpen, closeModal, initialTaskData, mode } = useTaskModalStore()
 
 	const trpcUtils = api.useContext()
-	const allTasks = trpcUtils.tasks.getAll.getData()
-	const task = allTasks?.find((entity) => entity.id === taskId)
 
-	const updateTaskMutation = api.tasks.updateOne.useMutation({
+	const taskEditingMutation = api.tasks.updateOne.useMutation({
+		onSuccess: async () => {
+			await trpcUtils.tasks.getAll.invalidate()
+			closeModal()
+		},
+	})
+	const taskCreationMutation = api.tasks.createOne.useMutation({
 		onSuccess: async () => {
 			await trpcUtils.tasks.getAll.invalidate()
 			closeModal()
 		},
 	})
 
-	const onSubmitUpdating = (formData: FormData) => {
-		if (!taskId) return
-		updateTaskMutation.mutate({
-			id: taskId,
+	const onSubmitEditing = (formData: FormData) => {
+		if (!initialTaskData?.id) return
+		taskEditingMutation.mutate({
+			id: initialTaskData.id,
 			title: formData.title,
 			description: formData.description ?? undefined,
 		})
 	}
 
-	if (!task) {
-		return null
+	const onSubmitCreation = (formData: FormData) => {
+		taskCreationMutation.mutate({
+			title: formData.title,
+			description: formData.description ?? undefined,
+		})
 	}
 
 	return (
@@ -37,9 +44,9 @@ export const TaskModal = () => {
 			onClose={closeModal}
 		>
 			<Form
-				title={task.title}
-				description={task.description}
-				onSubmit={onSubmitUpdating}
+				title={initialTaskData?.title}
+				description={initialTaskData?.description}
+				onSubmit={mode === 'editing' ? onSubmitEditing : onSubmitCreation}
 			/>
 		</Modal>
 	)
