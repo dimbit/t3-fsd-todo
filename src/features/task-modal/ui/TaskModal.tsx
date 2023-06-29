@@ -1,7 +1,8 @@
 import { Modal } from '@/entities/modal'
 import { useTaskModalStore } from '../model'
 import { api } from '@/shared/api'
-import { Button } from '@/shared/ui-kit'
+import { Form } from './Form'
+import type { FormData } from '../model'
 
 export const TaskModal = () => {
 	const { taskId, isOpen, closeModal } = useTaskModalStore()
@@ -9,6 +10,22 @@ export const TaskModal = () => {
 	const trpcUtils = api.useContext()
 	const allTasks = trpcUtils.tasks.getAll.getData()
 	const task = allTasks?.find((entity) => entity.id === taskId)
+
+	const updateTaskMutation = api.tasks.updateOne.useMutation({
+		onSuccess: async () => {
+			await trpcUtils.tasks.getAll.invalidate()
+			closeModal()
+		},
+	})
+
+	const onSubmitUpdating = (formData: FormData) => {
+		if (!taskId) return
+		updateTaskMutation.mutate({
+			id: taskId,
+			title: formData.title,
+			description: formData.description ?? undefined,
+		})
+	}
 
 	if (!task) {
 		return null
@@ -19,21 +36,11 @@ export const TaskModal = () => {
 			isOpen={isOpen}
 			onClose={closeModal}
 		>
-			<form
-				onSubmit={console.log}
-				className={'flex flex-col gap-2'}
-			>
-				{task.title}
-				<input
-					name='title'
-					value={task.title}
-				/>
-				<textarea
-					name='description'
-					value={task.description ?? ''}
-				/>
-				<Button type='submit'>Save</Button>
-			</form>
+			<Form
+				title={task.title}
+				description={task.description}
+				onSubmit={onSubmitUpdating}
+			/>
 		</Modal>
 	)
 }
