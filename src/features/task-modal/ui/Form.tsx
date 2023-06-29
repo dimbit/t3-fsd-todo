@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import type { SubmitHandler } from 'react-hook-form'
 import type { FormData } from '../model'
 
-type Props = FormData & {
+type Props = Partial<FormData> & {
 	onSubmit: SubmitHandler<FormData>
 }
 
