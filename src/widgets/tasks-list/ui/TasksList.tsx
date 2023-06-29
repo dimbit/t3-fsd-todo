@@ -20,7 +20,10 @@ export const TasksList = ({ tasks = [], isLoading, error, status }: Props) => {
 		if (!taskData.id) {
 			return
 		}
-		openTaskEditingModal(taskData)
+		openTaskEditingModal({
+			...taskData,
+			statusId: status.id,
+		})
 	}
 
 	const handleClickAddTask = () => {

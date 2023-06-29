@@ -36,16 +36,13 @@ export const tasksRouter = createTRPCRouter({
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
-			const updatedTask = {
-				title: input.title,
-				description: input.description,
-			}
+			const { id, ...data } = input
 
 			const result = await ctx.prisma.task.update({
 				where: {
-					id: input.id,
+					id,
 				},
-				data: updatedTask,
+				data,
 			})
 			return result
 		}),

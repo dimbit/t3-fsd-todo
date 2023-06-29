@@ -4,7 +4,9 @@ import { immer } from 'zustand/middleware/immer'
 import type { Task } from '@prisma/client'
 
 type Mode = 'editing' | 'creation'
-type InitialTaskData = Partial<Pick<Task, 'id' | 'title' | 'description'>>
+type InitialTaskData = Partial<
+	Pick<Task, 'id' | 'title' | 'description' | 'statusId'>
+>
 type State = {
 	isOpen: boolean
 	mode?: Mode
