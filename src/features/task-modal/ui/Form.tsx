@@ -12,7 +12,11 @@ type Props = Partial<FormData> & {
 }
 
 export const Form = ({ title, description, status, onSubmit }: Props) => {
-	const { register, handleSubmit } = useForm<FormData>({
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<FormData>({
 		defaultValues: {
 			title,
 			description,
@@ -26,22 +30,39 @@ export const Form = ({ title, description, status, onSubmit }: Props) => {
 			onSubmit={handleSubmit(onSubmit)}
 			className={'flex w-80 flex-col gap-4'}
 		>
-			<input
-				className={clsx([
-					'rounded border px-4 py-2 shadow outline-none',
-					'border-neutral-200 bg-white dark:border-neutral-500 dark:bg-neutral-700',
-					'focus:bg-neutral-100 enabled:hover:bg-neutral-100 focus:dark:bg-neutral-600 enabled:dark:hover:bg-neutral-600',
-				])}
-				{...register('title')}
-			/>
-			<textarea
-				className={clsx([
-					'rounded border px-4 py-2 shadow outline-none',
-					'border-neutral-200 bg-white dark:border-neutral-500 dark:bg-neutral-700',
-					'focus:bg-neutral-100 enabled:hover:bg-neutral-100 focus:dark:bg-neutral-600 enabled:dark:hover:bg-neutral-600',
-				])}
-				{...register('description')}
-			/>
+			<label className={'relative pb-7'}>
+				<input
+					className={clsx([
+						'w-full rounded border px-4 py-2 shadow outline-none',
+						'border-neutral-200 bg-white dark:border-neutral-500 dark:bg-neutral-700',
+						'focus:bg-neutral-100 enabled:hover:bg-neutral-100 focus:dark:bg-neutral-600 enabled:dark:hover:bg-neutral-600',
+					])}
+					placeholder={'Title'}
+					{...register('title')}
+				/>
+				{errors.title ? (
+					<span className={'absolute bottom-0 left-0 text-red-400'}>
+						{errors.title.message}
+					</span>
+				) : null}
+			</label>
+			<label className={'relative pb-7'}>
+				<textarea
+					className={clsx([
+						'w-full rounded border px-4 py-2 shadow outline-none',
+						'border-neutral-200 bg-white dark:border-neutral-500 dark:bg-neutral-700',
+						'focus:bg-neutral-100 enabled:hover:bg-neutral-100 focus:dark:bg-neutral-600 enabled:dark:hover:bg-neutral-600',
+					])}
+					rows={10}
+					placeholder={'Description'}
+					{...register('description')}
+				/>
+				{errors.description ? (
+					<span className={'absolute bottom-0 left-0 text-red-400'}>
+						{errors.description.message}
+					</span>
+				) : null}
+			</label>
 			<select
 				className={clsx([
 					'cursor-pointer rounded border px-4 py-2 shadow outline-none',
@@ -66,11 +87,25 @@ export const Form = ({ title, description, status, onSubmit }: Props) => {
 	)
 }
 
+const MAX_TITLE_LENGTH = 150
+const MAX_DESCRIPTION_LENGTH = 2500
+
 const StatusEnum = z.nativeEnum(Status)
 const formSchema = z
 	.object({
-		title: z.string(),
-		description: z.string().optional(),
+		title: z
+			.string()
+			.trim()
+			.min(1, { message: 'Title is required' })
+			.max(MAX_TITLE_LENGTH, {
+				message: `Too long( Maximum ${MAX_TITLE_LENGTH} chars allowed`,
+			}),
+		description: z
+			.string()
+			.trim()
+			.max(MAX_TITLE_LENGTH, {
+				message: `Too long( Maximum ${MAX_DESCRIPTION_LENGTH} chars allowed`,
+			}),
 		status: StatusEnum,
 	})
 	.required()
