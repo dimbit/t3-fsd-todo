@@ -28,7 +28,7 @@ export const TaskModal = () => {
 			id: initialTaskData.id,
 			title: formData.title,
 			description: formData.description ?? undefined,
-			statusId: formData.statusId,
+			status: formData.status,
 		})
 	}
 
@@ -36,7 +36,7 @@ export const TaskModal = () => {
 		taskCreationMutation.mutate({
 			title: formData.title,
 			description: formData.description ?? undefined,
-			statusId: formData.statusId,
+			status: formData.status,
 		})
 	}
 
@@ -48,7 +48,7 @@ export const TaskModal = () => {
 			<Form
 				title={initialTaskData?.title}
 				description={initialTaskData?.description}
-				statusId={initialTaskData?.statusId}
+				status={initialTaskData?.status}
 				onSubmit={mode === 'editing' ? onSubmitEditing : onSubmitCreation}
 			/>
 		</Modal>

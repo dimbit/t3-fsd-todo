@@ -16,25 +16,23 @@ export const TasksList = ({ tasks = [], isLoading, error, status }: Props) => {
 		id: string
 		title: string
 		description?: string | null
+		status: Status
 	}) => {
 		if (!taskData.id) {
 			return
 		}
-		openTaskEditingModal({
-			...taskData,
-			statusId: status.id,
-		})
+		openTaskEditingModal(taskData)
 	}
 
 	const handleClickAddTask = () => {
 		openTaskCreationModal({
-			statusId: status.id,
+			status,
 		})
 	}
 
 	return (
 		<div className={'flex flex-col gap-2'}>
-			<h2 className={'px-4 font-bold'}>{status.name}</h2>
+			<h2 className={'px-4 font-bold'}>{status}</h2>
 			<div className={'flex flex-col'}>
 				<LoadingState
 					isLoading={isLoading}
@@ -47,6 +45,7 @@ export const TasksList = ({ tasks = [], isLoading, error, status }: Props) => {
 									id={task.id}
 									title={task.title}
 									description={task.description}
+									status={status}
 									key={task.id}
 									onClick={handleClickTaskCard}
 								/>

@@ -5,7 +5,7 @@ import type { Task } from '@prisma/client'
 
 type Mode = 'editing' | 'creation'
 type InitialTaskData = Partial<
-	Pick<Task, 'id' | 'title' | 'description' | 'statusId'>
+	Pick<Task, 'id' | 'title' | 'description' | 'status'>
 >
 type State = {
 	isOpen: boolean

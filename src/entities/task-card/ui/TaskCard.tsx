@@ -1,16 +1,24 @@
 import { Card } from '@/shared/ui-kit'
+import type { Status } from '@prisma/client'
 
 type TaskProps = {
 	id: string
 	title: string
 	description?: string | null
+	status: Status
 }
 type Props = TaskProps & {
 	onClick: (props: TaskProps) => void
 }
-export const TaskCard = ({ id, title, description, onClick }: Props) => {
+export const TaskCard = ({
+	id,
+	title,
+	description,
+	status,
+	onClick,
+}: Props) => {
 	const handleClick = () => {
-		onClick({ id, title, description })
+		onClick({ id, title, description, status })
 	}
 	return (
 		<Card onClick={handleClick}>
