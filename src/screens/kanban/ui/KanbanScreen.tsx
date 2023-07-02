@@ -4,6 +4,7 @@ import { api } from '@/shared/api'
 import { useMemo } from 'react'
 import { arrangeTasksByStatus } from '../model'
 import { TaskModal } from '@/features/task-modal'
+import { Status } from '@prisma/client'
 
 export const KanbanScreen = () => {
 	const {
@@ -26,11 +27,11 @@ export const KanbanScreen = () => {
 		<>
 			<Layout>
 				<div className={'grid grid-flow-col gap-4 overflow-auto p-4'}>
-					{tasksByStatus.map(({ status, tasks }) => {
+					{Object.values(Status).map((status) => {
 						return (
 							<TasksList
-								key={status.id}
-								tasks={tasks}
+								key={status}
+								tasks={tasksByStatus[status]}
 								isLoading={isLoading}
 								error={error?.message}
 								status={status}
