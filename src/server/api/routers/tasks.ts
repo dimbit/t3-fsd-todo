@@ -1,5 +1,8 @@
 import { z } from 'zod'
 import { createTRPCRouter, protectedProcedure } from '@/server/api/trpc'
+import { Status } from '@prisma/client'
+
+const StatusEnum = z.nativeEnum(Status)
 
 export const tasksRouter = createTRPCRouter({
 	getAll: protectedProcedure.query(async ({ ctx }) => {
@@ -7,9 +10,6 @@ export const tasksRouter = createTRPCRouter({
 		const tasks = await ctx.prisma.task.findMany({
 			where: {
 				userId,
-			},
-			include: {
-				status: true,
 			},
 		})
 		return tasks
@@ -21,7 +21,7 @@ export const tasksRouter = createTRPCRouter({
 			const task = ctx.prisma.task.findFirst({
 				where: {
 					id: input.id,
-					userId: userId,
+					userId,
 				},
 			})
 			return task
@@ -32,7 +32,7 @@ export const tasksRouter = createTRPCRouter({
 				id: z.string(),
 				title: z.string(),
 				description: z.string().optional(),
-				statusId: z.string().optional(),
+				status: StatusEnum,
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
@@ -51,28 +51,22 @@ export const tasksRouter = createTRPCRouter({
 			z.object({
 				title: z.string(),
 				description: z.string().optional(),
-				statusId: z.string().optional(),
+				status: StatusEnum,
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
-			const newTask = {
-				title: input.title,
-				description: input.description,
-				status: {
-					connect: {
-						id: input.statusId,
-					},
-				},
-				user: {
-					connect: {
-						id: ctx.session.user.id,
-					},
-				},
-			}
 			await ctx.prisma.task.create({
-				data: newTask,
+				data: {
+					title: input.title,
+					description: input.description,
+					status: input.status as Status,
+					user: {
+						connect: {
+							id: ctx.session.user.id,
+						},
+					},
+				},
 				include: {
-					status: true,
 					user: true,
 				},
 			})
