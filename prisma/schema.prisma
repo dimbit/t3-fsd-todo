@@ -14,8 +14,7 @@ model Task {
   title       String
   description String?
   tags        Tag[]    @relation("TagsToTask")
-  statusId    String
-  status      Status   @relation(fields: [statusId], references: [id])
+  status      Status
   user        User     @relation(fields: [userId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -27,10 +26,10 @@ model Tag {
   tasks Task[] @relation("TagsToTask")
 }
 
-model Status {
-  id    String @id @default(cuid())
-  name  String
-  tasks Task[]
+enum Status {
+  TO_DO
+  IN_PROGRESS
+  DONE
 }
 
 model Account {
