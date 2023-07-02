@@ -1,5 +1,5 @@
-import { tasksRouter } from '@/server/api/routers/tasks'
 import { createTRPCRouter } from '@/server/api/trpc'
+import { tasksRouter } from './routers'
 
 export const appRouter = createTRPCRouter({
 	tasks: tasksRouter,
