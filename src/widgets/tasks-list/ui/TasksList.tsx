@@ -34,30 +34,27 @@ export const TasksList = ({ tasks = [], isLoading, error, status }: Props) => {
 	}
 
 	return (
-		<div className={'flex flex-col gap-2'}>
-			<h2 className={'px-4 font-bold'}>{status}</h2>
-			<div className={'flex flex-col'}>
-				<LoadingState
-					isLoading={isLoading}
-					error={error}
-				>
-					<div className={'flex flex-col gap-2'}>
-						{tasks?.map((task) => {
-							return (
-								<TaskCard
-									id={task.id}
-									title={task.title}
-									description={task.description}
-									status={status}
-									key={task.id}
-									onClick={handleClickTaskCard}
-								/>
-							)
-						})}
-					</div>
-					<button onClick={handleClickAddTask}>add +</button>
-				</LoadingState>
-			</div>
+		<div className={'flex flex-col'}>
+			<LoadingState
+				isLoading={isLoading}
+				error={error}
+			>
+				<div className={'flex flex-col gap-2'}>
+					{tasks?.map((task) => {
+						return (
+							<TaskCard
+								id={task.id}
+								title={task.title}
+								description={task.description}
+								status={status}
+								key={task.id}
+								onClick={handleClickTaskCard}
+							/>
+						)
+					})}
+				</div>
+				<button onClick={handleClickAddTask}>add +</button>
+			</LoadingState>
 		</div>
 	)
 }

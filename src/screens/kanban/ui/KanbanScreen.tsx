@@ -30,18 +30,36 @@ export const KanbanScreen = () => {
 	return (
 		<>
 			<Layout>
-				<div className={'grid grid-cols-kanban gap-4 overflow-auto p-4'}>
-					{Object.values(Status).map((status) => {
-						return (
-							<TasksList
-								key={status}
-								tasks={tasksByStatus[status]}
-								isLoading={isLoading}
-								error={error?.message}
-								status={status}
-							/>
-						)
-					})}
+				<div className={'grid grid-flow-row overflow-x-auto'}>
+					<div
+						className={
+							'sticky top-0 z-10 grid w-full grid-cols-kanban justify-items-center gap-4 bg-neutral-800 p-4'
+						}
+					>
+						{Object.values(Status).map((status) => {
+							return (
+								<h2
+									key={status}
+									className={'px-4 font-bold'}
+								>
+									{status}
+								</h2>
+							)
+						})}
+					</div>
+					<div className={'grid grid-cols-kanban gap-4 px-4 pb-4'}>
+						{Object.values(Status).map((status) => {
+							return (
+								<TasksList
+									key={status}
+									tasks={tasksByStatus[status]}
+									isLoading={isLoading}
+									error={error?.message}
+									status={status}
+								/>
+							)
+						})}
+					</div>
 				</div>
 			</Layout>
 			<TaskModal />
