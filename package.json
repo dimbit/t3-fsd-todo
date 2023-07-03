@@ -8,7 +8,9 @@
 		"postinstall": "prisma generate",
 		"lint": "next lint",
 		"start": "next start",
-		"preinstall": "npx only-allow pnpm"
+		"preinstall": "npx only-allow pnpm",
+		"pre-commit": "npx lint-staged && npx tsc --noEmit",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.1.1",
@@ -44,6 +46,8 @@
 		"eslint": "^8.40.0",
 		"eslint-config-next": "^13.4.2",
 		"eslint-plugin-simple-import-sort": "^10.0.0",
+		"husky": "^8.0.3",
+		"lint-staged": "^13.2.3",
 		"postcss": "^8.4.21",
 		"prettier": "^2.8.8",
 		"prettier-plugin-tailwindcss": "^0.2.8",
