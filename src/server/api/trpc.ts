@@ -7,7 +7,7 @@
  * need to use are documented accordingly near the end.
  */
 
-import { initTRPC, TRPCError } from '@trpc/server'
+import { initTRPC, TRPCError, type inferAsyncReturnType } from '@trpc/server'
 import { type CreateNextContextOptions } from '@trpc/server/adapters/next'
 import { type Session } from 'next-auth'
 import superjson from 'superjson'
@@ -128,3 +128,5 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(enforceUserIsAuthed)
+
+export type Context = inferAsyncReturnType<typeof createTRPCContext>
