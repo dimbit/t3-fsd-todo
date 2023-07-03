@@ -4,6 +4,7 @@ import { Status } from '@prisma/client'
 import { TaskModal } from '@/features/task-modal'
 
 import { api } from '@/shared/api'
+import { LoadingState } from '@/shared/ui-kit'
 
 import { Layout } from '@/widgets/layout'
 import { TasksList } from '@/widgets/tasks-list'
@@ -47,19 +48,22 @@ export const KanbanScreen = () => {
 							)
 						})}
 					</div>
-					<div className={'grid grid-cols-kanban gap-4 px-4 pb-4'}>
-						{Object.values(Status).map((status) => {
-							return (
-								<TasksList
-									key={status}
-									tasks={tasksByStatus[status]}
-									isLoading={isLoading}
-									error={error?.message}
-									status={status}
-								/>
-							)
-						})}
-					</div>
+					<LoadingState
+						isLoading={isLoading}
+						error={error?.message}
+					>
+						<div className={'grid grid-cols-kanban gap-4 px-4 pb-4'}>
+							{Object.values(Status).map((status) => {
+								return (
+									<TasksList
+										key={status}
+										tasks={tasksByStatus[status]}
+										status={status}
+									/>
+								)
+							})}
+						</div>
+					</LoadingState>
 				</div>
 			</Layout>
 			<TaskModal />
