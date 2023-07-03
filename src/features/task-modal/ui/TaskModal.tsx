@@ -65,7 +65,7 @@ export const TaskModal = () => {
 				description={initialTaskData?.description}
 				status={initialTaskData?.status}
 				onSubmit={mode === 'editing' ? onSubmitEditing : onSubmitCreation}
-				onDelete={onDeleteTask}
+				onDelete={mode === 'editing' ? onDeleteTask : null}
 			/>
 		</Modal>
 	)

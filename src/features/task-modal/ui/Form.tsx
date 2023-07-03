@@ -12,7 +12,7 @@ import { DeleteButton } from './DeleteButton'
 
 type Props = Partial<FormData> & {
 	onSubmit: SubmitHandler<FormData>
-	onDelete: () => void
+	onDelete?: (() => void) | null
 }
 
 export const Form = ({
@@ -34,6 +34,8 @@ export const Form = ({
 		},
 		resolver: zodResolver(formSchema),
 	})
+
+	const withDeleteButton = !!onDelete
 
 	return (
 		<form
@@ -92,9 +94,14 @@ export const Form = ({
 					)
 				})}
 			</select>
-			<div className={'grid grid-cols-1fr-auto gap-4'}>
+			<div
+				className={clsx([
+					'grid gap-4',
+					withDeleteButton && 'grid-cols-1fr-auto',
+				])}
+			>
 				<Button type='submit'>Save</Button>
-				<DeleteButton onClick={onDelete} />
+				{onDelete && <DeleteButton onClick={onDelete} />}
 			</div>
 		</form>
 	)
