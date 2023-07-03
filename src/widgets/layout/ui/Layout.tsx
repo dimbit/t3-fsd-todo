@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const Layout = ({ children }: Props) => {
-	const [sidebarIsCollapsed, setSidebarCollapsed] = useState(false)
+	const [sidebarIsCollapsed, setSidebarCollapsed] = useState(true)
 
 	const toggleSidebarCollapsed = () => {
 		setSidebarCollapsed((previous) => {
