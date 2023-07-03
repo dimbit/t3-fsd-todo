@@ -18,7 +18,7 @@ const config = {
 	parserOptions: {
 		project: path.join(__dirname, 'tsconfig.json'),
 	},
-	plugins: ['@typescript-eslint'],
+	plugins: ['@typescript-eslint', 'simple-import-sort'],
 	extends: ['next/core-web-vitals', 'plugin:@typescript-eslint/recommended'],
 	rules: {
 		'@typescript-eslint/consistent-type-imports': [
@@ -37,6 +37,24 @@ const config = {
 				},
 			},
 		],
+		'sort-imports': 'off',
+		'import/order': 'off',
+		'simple-import-sort/imports': [
+			'error',
+			{
+				groups: [
+					['^react$', '^react-dom$', '^next*', '^[^.]'],
+					['^@/pages/*'],
+					['^@/screens/*'],
+					['^@/features/*'],
+					['^@/entities/*'],
+					['^@/shared/*'],
+					['^@/*'],
+					['^\\.'],
+				],
+			},
+		],
+		'simple-import-sort/exports': 'error',
 	},
 }
 
