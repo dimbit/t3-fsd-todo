@@ -23,6 +23,12 @@ export const TaskModal = () => {
 			closeModal()
 		},
 	})
+	const taskDeletionMutation = api.tasks.deleteOne.useMutation({
+		onSuccess: async () => {
+			await trpcUtils.tasks.getAll.invalidate()
+			closeModal()
+		},
+	})
 
 	const onSubmitEditing = (formData: FormData) => {
 		if (!initialTaskData?.id) return
@@ -42,6 +48,13 @@ export const TaskModal = () => {
 		})
 	}
 
+	const onDeleteTask = () => {
+		if (!initialTaskData?.id) return
+		taskDeletionMutation.mutate({
+			id: initialTaskData.id,
+		})
+	}
+
 	return (
 		<Modal
 			isOpen={isOpen}
@@ -52,6 +65,7 @@ export const TaskModal = () => {
 				description={initialTaskData?.description}
 				status={initialTaskData?.status}
 				onSubmit={mode === 'editing' ? onSubmitEditing : onSubmitCreation}
+				onDelete={onDeleteTask}
 			/>
 		</Modal>
 	)

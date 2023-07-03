@@ -8,12 +8,20 @@ import { z } from 'zod'
 import { Button } from '@/shared/ui-kit'
 
 import type { FormData } from '../model'
+import { DeleteButton } from './DeleteButton'
 
 type Props = Partial<FormData> & {
 	onSubmit: SubmitHandler<FormData>
+	onDelete: () => void
 }
 
-export const Form = ({ title, description, status, onSubmit }: Props) => {
+export const Form = ({
+	title,
+	description,
+	status,
+	onSubmit,
+	onDelete,
+}: Props) => {
 	const {
 		register,
 		handleSubmit,
@@ -84,7 +92,10 @@ export const Form = ({ title, description, status, onSubmit }: Props) => {
 					)
 				})}
 			</select>
-			<Button type='submit'>Save</Button>
+			<div className={'grid grid-cols-1fr-auto gap-4'}>
+				<Button type='submit'>Save</Button>
+				<DeleteButton onClick={onDelete} />
+			</div>
 		</form>
 	)
 }
