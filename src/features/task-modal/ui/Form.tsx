@@ -50,6 +50,7 @@ export const Form = ({
 						'focus:bg-neutral-100 enabled:hover:bg-neutral-100 focus:dark:bg-neutral-600 enabled:dark:hover:bg-neutral-600',
 					])}
 					placeholder={'Title'}
+					autoFocus
 					{...register('title')}
 				/>
 				{errors.title ? (
