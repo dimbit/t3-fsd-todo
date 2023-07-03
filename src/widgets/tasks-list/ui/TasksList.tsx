@@ -1,6 +1,6 @@
 import type { Status, Task } from '@prisma/client'
 
-import { useTaskModalStore } from '@/features/task-modal/model'
+import { useTaskModalStore } from '@/features/task-modal'
 
 import { TaskCard } from '@/entities/task-card'
 
