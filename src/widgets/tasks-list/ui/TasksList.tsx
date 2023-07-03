@@ -12,8 +12,10 @@ type Props = {
 	error?: string
 	status: Status
 }
+
 export const TasksList = ({ tasks = [], isLoading, error, status }: Props) => {
-	const { openTaskEditingModal, openTaskCreationModal } = useTaskModalStore()
+	const openTaskEditingModal = useTaskModalStore.use.openTaskEditingModal()
+	const openTaskCreationModal = useTaskModalStore.use.openTaskCreationModal()
 
 	const handleClickTaskCard = (taskData: {
 		id: string

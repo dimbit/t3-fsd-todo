@@ -3,6 +3,8 @@ import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
+import { createSelectors } from '@/shared/storeUtils'
+
 type Mode = 'editing' | 'creation'
 type InitialTaskData = Partial<
 	Pick<Task, 'id' | 'title' | 'description' | 'status'>
@@ -20,7 +22,7 @@ type Actions = {
 	closeModal: () => void
 }
 
-export const useTaskModalStore = create<State & Actions>()(
+export const useTaskModalStoreBase = create<State & Actions>()(
 	persist(
 		devtools(
 			immer((set) => ({
@@ -54,3 +56,5 @@ export const useTaskModalStore = create<State & Actions>()(
 		{ name: 'taskModalStore' },
 	),
 )
+
+export const useTaskModalStore = createSelectors(useTaskModalStoreBase)
