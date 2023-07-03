@@ -19,7 +19,7 @@ export const Modal = ({ isOpen, onClose, children }: Props) => {
 	if (isOpen && isMounted) {
 		return createPortal(
 			<div
-				className={'fixed bottom-0 left-0 right-0 top-0 flex'}
+				className={'fixed bottom-0 left-0 right-0 top-0 z-50 flex'}
 				onClick={onBackgroundClick}
 			>
 				<Card className={'m-auto'}>{children}</Card>
