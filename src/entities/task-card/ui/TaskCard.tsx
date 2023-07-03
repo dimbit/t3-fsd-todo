@@ -22,7 +22,12 @@ export const TaskCard = ({
 		onClick({ id, title, description, status })
 	}
 	return (
-		<Card onClick={handleClick}>
+		<Card
+			className={
+				'transition-colors hover:cursor-pointer hover:bg-neutral-100 hover:dark:bg-neutral-600'
+			}
+			onClick={handleClick}
+		>
 			<h5 className={'font-bold'}>{title}</h5>
 			<p>{description}</p>
 		</Card>
