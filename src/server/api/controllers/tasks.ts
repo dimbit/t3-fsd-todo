@@ -4,6 +4,7 @@ import { TRPCError } from '@trpc/server'
 
 import type {
 	CreateOneInput,
+	DeleteOneInput,
 	GetOneInput,
 	UpdateOneInput,
 } from '../schema/tasks'
@@ -27,6 +28,12 @@ const isHandledPrismaError = (
 export const getAll = async ({ ctx }: { ctx: Context }) => {
 	try {
 		const userId = ctx.session?.user.id
+		if (!userId) {
+			throw new TRPCError({
+				code: 'FORBIDDEN',
+				message: 'User ID is not provided',
+			})
+		}
 		const tasks = await ctx.prisma.task.findMany({
 			where: {
 				userId,
@@ -136,6 +143,41 @@ export const createOne = async ({
 		return {
 			...input,
 			userId,
+		}
+	} catch (error) {
+		if (isHandledPrismaError(error)) {
+			throw new TRPCError({
+				code: 'INTERNAL_SERVER_ERROR',
+				message: error.message,
+			})
+		}
+		throw error
+	}
+}
+
+export const deleteOne = async ({
+	input,
+	ctx,
+}: {
+	input: DeleteOneInput
+	ctx: Context
+}) => {
+	try {
+		const userId = ctx.session?.user.id
+		if (!userId) {
+			throw new TRPCError({
+				code: 'FORBIDDEN',
+				message: 'User ID is not provided',
+			})
+		}
+		await ctx.prisma.task.deleteMany({
+			where: {
+				id: input.id,
+				userId,
+			},
+		})
+		return {
+			id: input.id,
 		}
 	} catch (error) {
 		if (isHandledPrismaError(error)) {

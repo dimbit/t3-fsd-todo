@@ -20,6 +20,11 @@ export const createOneSchema = z.object({
 	status: StatusEnum,
 })
 
+export const deleteOneSchema = z.object({
+	id: z.string(),
+})
+
 export type GetOneInput = z.TypeOf<typeof getOneSchema>
 export type UpdateOneInput = z.TypeOf<typeof updateOneSchema>
 export type CreateOneInput = z.TypeOf<typeof createOneSchema>
+export type DeleteOneInput = z.TypeOf<typeof deleteOneSchema>
