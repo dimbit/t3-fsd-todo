@@ -1,5 +1,6 @@
-import { Button } from '@/shared/ui-kit/Button'
 import { signOut } from 'next-auth/react'
+
+import { Button } from '@/shared/ui-kit/Button'
 
 export const SignOutButton = () => {
 	return (

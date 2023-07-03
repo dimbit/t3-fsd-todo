@@ -1,6 +1,7 @@
 import { createTRPCRouter, protectedProcedure } from '@/server/api/trpc'
-import { getAll, getOne, updateOne, createOne } from '../controllers/tasks'
-import { getOneSchema, updateOneSchema, createOneSchema } from '../schema/tasks'
+
+import { createOne, getAll, getOne, updateOne } from '../controllers/tasks'
+import { createOneSchema, getOneSchema, updateOneSchema } from '../schema/tasks'
 
 export const tasksRouter = createTRPCRouter({
 	getAll: protectedProcedure.query(getAll),

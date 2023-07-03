@@ -1,7 +1,10 @@
-import { TaskCard } from '@/entities/task-card'
-import { LoadingState } from '@/shared/ui-kit'
 import type { Status, Task } from '@prisma/client'
+
 import { useTaskModalStore } from '@/features/task-modal/model'
+
+import { TaskCard } from '@/entities/task-card'
+
+import { LoadingState } from '@/shared/ui-kit'
 
 type Props = {
 	tasks: Task[]

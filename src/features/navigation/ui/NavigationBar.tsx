@@ -1,8 +1,10 @@
 import Link from 'next/link'
+import clsx from 'clsx'
+
 import { ROUTES } from '@/shared/routes'
+
 import KanbanIcon from '@/images/icons/kanban.svg'
 import ListIcon from '@/images/icons/list.svg'
-import clsx from 'clsx'
 
 const navigation = [
 	{

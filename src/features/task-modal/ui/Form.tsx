@@ -1,11 +1,13 @@
-import { Button } from '@/shared/ui-kit'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Status } from '@prisma/client'
+import clsx from 'clsx'
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import type { SubmitHandler } from 'react-hook-form'
+
+import { Button } from '@/shared/ui-kit'
+
 import type { FormData } from '../model'
-import clsx from 'clsx'
-import { Status } from '@prisma/client'
 
 type Props = Partial<FormData> & {
 	onSubmit: SubmitHandler<FormData>

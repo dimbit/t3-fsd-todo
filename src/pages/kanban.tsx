@@ -1,7 +1,10 @@
 import type { GetServerSideProps } from 'next'
-import { getServerAuthSession } from '../server/auth'
-import { ROUTES } from '@/shared/routes'
+
 import { KanbanScreen } from '@/screens/kanban'
+
+import { ROUTES } from '@/shared/routes'
+
+import { getServerAuthSession } from '../server/auth'
 
 export default function Kanban() {
 	return <KanbanScreen />

@@ -1,7 +1,8 @@
-import { Sidebar } from './Sidebar'
-import clsx from 'clsx'
 import { useState } from 'react'
+import clsx from 'clsx'
+
 import { Header } from './Header'
+import { Sidebar } from './Sidebar'
 
 type Props = {
 	children?: React.ReactNode

@@ -1,6 +1,7 @@
-import { ComponentPropsWithoutRef, forwardRef } from 'react'
-import { Loader } from './Loader'
+import { type ComponentPropsWithoutRef, forwardRef } from 'react'
 import clsx from 'clsx'
+
+import { Loader } from './Loader'
 
 type ButtonStyleProps = {
 	fullWidth: boolean

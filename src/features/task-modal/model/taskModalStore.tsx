@@ -1,7 +1,7 @@
+import type { Task } from '@prisma/client'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
-import type { Task } from '@prisma/client'
 
 type Mode = 'editing' | 'creation'
 type InitialTaskData = Partial<

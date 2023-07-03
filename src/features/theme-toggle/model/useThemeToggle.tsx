@@ -1,5 +1,6 @@
-import { shallow } from 'zustand/shallow'
 import { useEffect } from 'react'
+import { shallow } from 'zustand/shallow'
+
 import { useThemeStore } from './themeStore'
 
 export const useThemeToggle = () => {

@@ -1,5 +1,6 @@
-import { Card } from '@/shared/ui-kit'
 import type { Status } from '@prisma/client'
+
+import { Card } from '@/shared/ui-kit'
 
 type TaskProps = {
 	id: string

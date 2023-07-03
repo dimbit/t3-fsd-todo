@@ -1,7 +1,10 @@
 import type { GetServerSideProps } from 'next'
-import { getServerAuthSession } from '../server/auth'
-import { ROUTES } from '@/shared/routes'
+
 import { TaskListScreen } from '@/screens/task-list'
+
+import { ROUTES } from '@/shared/routes'
+
+import { getServerAuthSession } from '../server/auth'
 
 export default function Home() {
 	return <TaskListScreen />

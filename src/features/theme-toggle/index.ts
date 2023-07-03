@@ -1,2 +1,2 @@
-export * from './ui'
 export { useThemeToggle } from './model'
+export * from './ui'

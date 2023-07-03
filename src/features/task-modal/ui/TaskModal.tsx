@@ -1,8 +1,10 @@
 import { Modal } from '@/entities/modal'
-import { useTaskModalStore } from '../model'
+
 import { api } from '@/shared/api'
-import { Form } from './Form'
+
 import type { FormData } from '../model'
+import { useTaskModalStore } from '../model'
+import { Form } from './Form'
 
 export const TaskModal = () => {
 	const { isOpen, closeModal, initialTaskData, mode } = useTaskModalStore()

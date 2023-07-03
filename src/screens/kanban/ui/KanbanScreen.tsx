@@ -1,10 +1,14 @@
+import { useMemo } from 'react'
+import { Status } from '@prisma/client'
+
+import { TaskModal } from '@/features/task-modal'
+
+import { api } from '@/shared/api'
+
 import { Layout } from '@/widgets/layout'
 import { TasksList } from '@/widgets/tasks-list'
-import { api } from '@/shared/api'
-import { useMemo } from 'react'
+
 import { arrangeTasksByStatus } from '../model'
-import { TaskModal } from '@/features/task-modal'
-import { Status } from '@prisma/client'
 
 export const KanbanScreen = () => {
 	const {

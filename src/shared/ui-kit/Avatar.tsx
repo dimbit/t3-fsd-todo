@@ -1,6 +1,6 @@
+import { memo } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
-import { memo } from 'react'
 
 type Size = 'small' | 'medium'
 

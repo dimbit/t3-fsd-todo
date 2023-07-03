@@ -1,6 +1,8 @@
-import { useThemeToggle } from '../model'
 import { Switch } from '@/shared/ui-kit'
+
 import MoonIcon from '@/images/icons/moon.svg'
+
+import { useThemeToggle } from '../model'
 
 export const ThemeToggleButton = () => {
 	const { theme, toggleTheme } = useThemeToggle()

@@ -1,7 +1,9 @@
 import { createPortal } from 'react-dom'
-import { MODAL_ROOT_NODE_ID } from '../model'
+
 import { Card } from '@/shared/ui-kit/Card'
-import { usePreventBodyScroll, useIsMounted, useCloseModal } from '../model'
+
+import { MODAL_ROOT_NODE_ID } from '../model'
+import { useCloseModal, useIsMounted, usePreventBodyScroll } from '../model'
 
 type Props = {
 	isOpen: boolean

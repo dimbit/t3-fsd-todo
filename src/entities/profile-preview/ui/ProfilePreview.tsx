@@ -1,4 +1,5 @@
 import { useSession } from 'next-auth/react'
+
 import { Avatar } from '@/shared/ui-kit'
 
 type Props = {
