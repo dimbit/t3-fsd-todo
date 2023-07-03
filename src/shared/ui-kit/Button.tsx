@@ -1,4 +1,4 @@
-import { type ComponentPropsWithoutRef, forwardRef } from 'react'
+import { forwardRef } from 'react'
 import clsx from 'clsx'
 
 import { Loader } from './Loader'
@@ -11,7 +11,7 @@ type Props = {
 	className?: string
 	isLoading?: boolean
 } & Partial<ButtonStyleProps> &
-	ComponentPropsWithoutRef<'button'>
+	React.ComponentPropsWithoutRef<'button'>
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
 	({ children, className, isLoading, fullWidth, ...props }, ref) => {
