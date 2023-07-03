@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import type { Status, Task } from '@prisma/client'
 
 import { useTaskModalStore } from '@/features/task-modal'
@@ -17,17 +18,20 @@ export const TasksList = ({ tasks = [], isLoading, error, status }: Props) => {
 	const openTaskEditingModal = useTaskModalStore.use.openTaskEditingModal()
 	const openTaskCreationModal = useTaskModalStore.use.openTaskCreationModal()
 
-	const handleClickTaskCard = (taskData: {
-		id: string
-		title: string
-		description?: string | null
-		status: Status
-	}) => {
-		if (!taskData.id) {
-			return
-		}
-		openTaskEditingModal(taskData)
-	}
+	const handleClickTaskCard = useCallback(
+		(taskData: {
+			id: string
+			title: string
+			description?: string | null
+			status: Status
+		}) => {
+			if (!taskData.id) {
+				return
+			}
+			openTaskEditingModal(taskData)
+		},
+		[openTaskEditingModal],
+	)
 
 	const handleClickAddTask = () => {
 		openTaskCreationModal({
