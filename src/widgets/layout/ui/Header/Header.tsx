@@ -1,8 +1,10 @@
+import { memo } from 'react'
+
 import { useTaskModalStore } from '@/features/task-modal'
 
 import { Button } from '@/shared/ui-kit/Button'
 
-export const Header = () => {
+export const Header = memo(() => {
 	const openTaskCreationModal = useTaskModalStore.use.openTaskCreationModal()
 
 	const handleClickAddTask = () => {
@@ -14,4 +16,6 @@ export const Header = () => {
 			<Button onClick={handleClickAddTask}>Add task</Button>
 		</div>
 	)
-}
+})
+
+Header.displayName = 'Header'
