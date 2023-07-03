@@ -4,7 +4,7 @@ import { useTaskModalStore } from '@/features/task-modal/model'
 
 import { TaskCard } from '@/entities/task-card'
 
-import { LoadingState } from '@/shared/ui-kit'
+import { Button, LoadingState } from '@/shared/ui-kit'
 
 type Props = {
 	tasks: Task[]
@@ -53,7 +53,12 @@ export const TasksList = ({ tasks = [], isLoading, error, status }: Props) => {
 						)
 					})}
 				</div>
-				<button onClick={handleClickAddTask}>add +</button>
+				<Button
+					className={'b-1 sticky bottom-4 mt-4'}
+					onClick={handleClickAddTask}
+				>
+					Add
+				</Button>
 			</LoadingState>
 		</div>
 	)
