@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import clsx from 'clsx'
 
 import { Header } from './Header'
@@ -11,11 +11,11 @@ type Props = {
 export const Layout = ({ children }: Props) => {
 	const [sidebarIsCollapsed, setSidebarCollapsed] = useState(true)
 
-	const toggleSidebarCollapsed = () => {
+	const toggleSidebarCollapsed = useCallback(() => {
 		setSidebarCollapsed((previous) => {
 			return !previous
 		})
-	}
+	}, [])
 
 	return (
 		<>
