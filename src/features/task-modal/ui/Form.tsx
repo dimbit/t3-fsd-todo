@@ -5,7 +5,7 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button } from '@/shared/ui-kit'
+import { Button, Input } from '@/shared/ui-kit'
 
 import type { FormData } from '../model'
 import { DeleteButton } from './DeleteButton'
@@ -42,23 +42,12 @@ export const Form = ({
 			onSubmit={handleSubmit(onSubmit)}
 			className={'flex w-80 flex-col gap-4'}
 		>
-			<label className={'relative pb-7'}>
-				<input
-					className={clsx([
-						'w-full rounded border px-4 py-2 shadow outline-none',
-						'border-neutral-200 bg-white dark:border-neutral-500 dark:bg-neutral-700',
-						'focus:bg-neutral-100 enabled:hover:bg-neutral-100 focus:dark:bg-neutral-600 enabled:dark:hover:bg-neutral-600',
-					])}
-					placeholder={'Title'}
-					autoFocus
-					{...register('title')}
-				/>
-				{errors.title ? (
-					<span className={'absolute bottom-0 left-0 text-red-400'}>
-						{errors.title.message}
-					</span>
-				) : null}
-			</label>
+			<Input
+				placeholder={'Title'}
+				autoFocus
+				error={errors.title?.message}
+				{...register('title')}
+			/>
 			<label className={'relative pb-7'}>
 				<textarea
 					className={clsx([
