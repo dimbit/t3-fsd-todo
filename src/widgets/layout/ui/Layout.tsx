@@ -18,23 +18,21 @@ export const Layout = ({ children }: Props) => {
 	}, [])
 
 	return (
-		<>
-			<main
-				className={clsx({
-					'grid-col grid h-full grid-rows-auto-1fr': true,
-					'grid-cols-sidebar': !sidebarIsCollapsed,
-					'grid-cols-sidebar-collapsed': sidebarIsCollapsed,
-					'transition-[grid-template-columns]': true,
-				})}
-			>
-				<Sidebar
-					isCollapsed={sidebarIsCollapsed}
-					toggleCollapsed={toggleSidebarCollapsed}
-					className={'row-start-1 row-end-3'}
-				/>
-				<Header />
-				{children}
-			</main>
-		</>
+		<main
+			className={clsx({
+				'grid-col grid h-full grid-rows-auto-1fr': true,
+				'grid-cols-sidebar': !sidebarIsCollapsed,
+				'grid-cols-sidebar-collapsed': sidebarIsCollapsed,
+				'transition-[grid-template-columns]': true,
+			})}
+		>
+			<Sidebar
+				isCollapsed={sidebarIsCollapsed}
+				toggleCollapsed={toggleSidebarCollapsed}
+				className={'row-start-1 row-end-3'}
+			/>
+			<Header />
+			{children}
+		</main>
 	)
 }
