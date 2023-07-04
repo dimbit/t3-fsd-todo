@@ -31,11 +31,11 @@ export const TasksList = memo(({ tasks = [], status }: Props) => {
 		[openTaskEditingModal],
 	)
 
-	const handleClickAddTask = () => {
+	const handleClickAddTask = useCallback(() => {
 		openTaskCreationModal({
 			status,
 		})
-	}
+	}, [openTaskCreationModal, status])
 
 	return (
 		<div className={'flex flex-col'}>
