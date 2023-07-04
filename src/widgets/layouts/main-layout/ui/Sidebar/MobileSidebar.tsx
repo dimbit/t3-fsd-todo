@@ -30,8 +30,12 @@ export const MobileSidebar = memo(
 			>
 				<Section className={'grid-cols-1fr-auto'}>
 					<ProfilePreview withName />
-
-					<Button onClick={closeSidebar}>
+					<Button
+						size={'medium'}
+						viewType={'secondary'}
+						withEqualPaddings
+						onClick={closeSidebar}
+					>
 						<CloseIcon />
 					</Button>
 				</Section>
