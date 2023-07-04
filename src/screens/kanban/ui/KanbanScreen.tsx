@@ -31,7 +31,7 @@ export const KanbanScreen = () => {
 	return (
 		<>
 			<Layout>
-				<div className={'grid grid-flow-row overflow-x-auto'}>
+				<div className={'grid grid-flow-row content-start overflow-x-auto'}>
 					<div
 						className={
 							'sticky top-0 z-10 grid w-full grid-cols-kanban justify-items-center gap-4 bg-neutral-800 p-4'
