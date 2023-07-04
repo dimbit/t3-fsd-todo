@@ -19,7 +19,11 @@ const navigation = [
 	},
 ]
 
-export const NavigationBar = () => {
+type Props = {
+	isCollapsed: boolean
+}
+
+export const NavigationBar = ({ isCollapsed }: Props) => {
 	return (
 		<ul className={'grid grid-flow-row content-start'}>
 			{navigation.map(({ name, Icon, href }) => {
@@ -35,8 +39,8 @@ export const NavigationBar = () => {
 								'dark:text-neutral-300 dark:hover:bg-neutral-600 dark:hover:text-neutral-100',
 							])}
 						>
-							{<Icon className={'stroke-current'} />}
-							{name}
+							{<Icon className={clsx(['stroke-current', isCollapsed && ''])} />}
+							{!isCollapsed && name}
 						</Link>
 					</li>
 				)

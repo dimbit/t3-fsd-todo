@@ -22,22 +22,20 @@ export const Sidebar = memo(
 				])}
 			>
 				<Section>
-					<ProfilePreview
-						className={clsx([
-							'p-2 transition-transform',
-							isCollapsed && '-translate-x-2',
-						])}
-					/>
+					<ProfilePreview withName={!isCollapsed} />
 				</Section>
 				<Section>
-					<NavigationBar />
+					<NavigationBar isCollapsed={isCollapsed} />
 					<button onClick={toggleCollapsed}>
 						{isCollapsed ? 'show' : 'hide'}
 					</button>
 				</Section>
 				<Section>
 					<ThemeToggleButton />
-					<SignOutButton />
+					<SignOutButton
+						withIcon={isCollapsed}
+						withText={!isCollapsed}
+					/>
 				</Section>
 			</aside>
 		)
