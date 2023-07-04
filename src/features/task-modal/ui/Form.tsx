@@ -5,7 +5,7 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button, Input, TextArea } from '@/shared/ui-kit'
+import { Button, Input, Select, TextArea } from '@/shared/ui-kit'
 
 import type { FormData } from '../model'
 import { DeleteButton } from './DeleteButton'
@@ -37,6 +37,13 @@ export const Form = ({
 
 	const withDeleteButton = !!onDelete
 
+	const statusOptions = Object.keys(Status).map((status) => {
+		return {
+			id: status,
+			name: status,
+		}
+	})
+
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
@@ -54,25 +61,10 @@ export const Form = ({
 				error={errors.description?.message}
 				{...register('description')}
 			/>
-			<select
-				className={clsx([
-					'cursor-pointer rounded border px-4 py-2 shadow outline-none',
-					'border-neutral-200 bg-white dark:border-neutral-500 dark:bg-neutral-700',
-					'focus:bg-neutral-100 enabled:hover:bg-neutral-100 focus:dark:bg-neutral-600 enabled:dark:hover:bg-neutral-600',
-				])}
+			<Select
 				{...register('status')}
-			>
-				{Object.keys(Status).map((status) => {
-					return (
-						<option
-							key={status}
-							value={status}
-						>
-							{status}
-						</option>
-					)
-				})}
-			</select>
+				options={statusOptions}
+			/>
 			<div
 				className={clsx([
 					'grid gap-4',
