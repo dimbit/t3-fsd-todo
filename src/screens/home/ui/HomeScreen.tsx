@@ -1,9 +1,13 @@
 import { SignInButton } from '@/features/authentication'
 
+import { HomeLayout } from '@/widgets/home-layout'
+
 export const HomeScreen = () => {
 	return (
-		<div className={'flex h-full items-center justify-center'}>
-			<SignInButton />
-		</div>
+		<HomeLayout>
+			<div className={'flex h-full items-center justify-center'}>
+				<SignInButton />
+			</div>
+		</HomeLayout>
 	)
 }
