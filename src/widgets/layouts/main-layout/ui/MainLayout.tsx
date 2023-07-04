@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import clsx from 'clsx'
 
 import { Header } from './Header'
-import { Sidebar } from './Sidebar'
+import { MobileSidebar, Sidebar } from './Sidebar'
 
 type Props = {
 	children?: React.ReactNode
@@ -10,6 +10,7 @@ type Props = {
 
 export const MainLayout = ({ children }: Props) => {
 	const [sidebarIsCollapsed, setSidebarCollapsed] = useState(true)
+	const [sidebarIsOpenedOnMobile, setSidebarIsOpenedOnMobile] = useState(false)
 
 	const toggleSidebarCollapsed = useCallback(() => {
 		setSidebarCollapsed((previous) => {
@@ -17,22 +18,43 @@ export const MainLayout = ({ children }: Props) => {
 		})
 	}, [])
 
+	const openMobileSidebar = useCallback(() => {
+		setSidebarIsOpenedOnMobile(true)
+	}, [])
+
+	const closeMobileSidebar = useCallback(() => {
+		setSidebarIsOpenedOnMobile(false)
+	}, [])
+
+	const isMobile = true
+
 	return (
 		<main
-			className={clsx({
-				'grid-col grid h-full grid-rows-auto-1fr': true,
-				'grid-cols-sidebar': !sidebarIsCollapsed,
-				'grid-cols-sidebar-collapsed': sidebarIsCollapsed,
-				'transition-[grid-template-columns]': true,
-			})}
+			className={clsx([
+				'relative grid h-full grid-cols-1 grid-rows-auto-1fr',
+				'sm:transition-[grid-template-columns]',
+				sidebarIsCollapsed
+					? 'sm:grid-cols-sidebar-collapsed'
+					: 'sm:grid-cols-sidebar',
+			])}
 		>
-			<Sidebar
-				isCollapsed={sidebarIsCollapsed}
-				toggleCollapsed={toggleSidebarCollapsed}
-				className={'row-start-1 row-end-3'}
-			/>
-			<Header />
+			<Header openMobileSidebar={openMobileSidebar} />
 			{children}
+			{isMobile ? (
+				<MobileSidebar
+					isOpened={sidebarIsOpenedOnMobile}
+					closeSidebar={closeMobileSidebar}
+				/>
+			) : (
+				<Sidebar
+					isCollapsed={sidebarIsCollapsed}
+					toggleCollapsed={toggleSidebarCollapsed}
+					className={clsx([
+						'bottom-0 top-0 h-full',
+						'sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-3',
+					])}
+				/>
+			)}
 		</main>
 	)
 }
