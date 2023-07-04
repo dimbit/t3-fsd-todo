@@ -36,9 +36,15 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
 			<button
 				ref={ref}
 				className={clsx([
-					'grid grid-flow-col content-center items-center overflow-hidden',
-					size === 'small' && 'rounded px-2 py-1 text-sm',
-					size === 'medium' && 'h-10 rounded-md px-3 py-2 text-base',
+					'grid h-min grid-flow-col content-center items-center overflow-hidden',
+					size === 'small' && [
+						withEqualPaddings ? 'px-1 py-1' : 'px-2 py-1',
+						'rounded text-sm',
+					],
+					size === 'medium' && [
+						withEqualPaddings ? 'px-2 py-2' : 'px-3 py-2',
+						'rounded-md text-base',
+					],
 					viewType === 'primary' && [
 						'border border-neutral-200 bg-white shadow  dark:border-neutral-500 dark:bg-neutral-700',
 						'enabled:hover:bg-neutral-100 enabled:dark:hover:bg-neutral-600',
