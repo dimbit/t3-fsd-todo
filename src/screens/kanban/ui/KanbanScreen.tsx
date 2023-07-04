@@ -6,7 +6,7 @@ import { TaskModal } from '@/features/task-modal'
 import { api } from '@/shared/api'
 import { LoadingState } from '@/shared/ui-kit'
 
-import { Layout } from '@/widgets/layout'
+import { MainLayout } from '@/widgets/layouts'
 import { TasksList } from '@/widgets/tasks-list'
 
 import { arrangeTasksByStatus } from '../model'
@@ -30,7 +30,7 @@ export const KanbanScreen = () => {
 
 	return (
 		<>
-			<Layout>
+			<MainLayout>
 				<div className={'grid grid-flow-row content-start overflow-x-auto'}>
 					<div
 						className={
@@ -65,7 +65,7 @@ export const KanbanScreen = () => {
 						</div>
 					</LoadingState>
 				</div>
-			</Layout>
+			</MainLayout>
 			<TaskModal />
 		</>
 	)

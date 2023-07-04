@@ -1,5 +1,5 @@
-import { Layout } from '@/widgets/layout'
+import { MainLayout } from '@/widgets/layouts/main-layout'
 
 export const TaskListScreen = () => {
-	return <Layout>task list</Layout>
+	return <MainLayout>task list</MainLayout>
 }

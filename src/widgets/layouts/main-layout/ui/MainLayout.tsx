@@ -8,7 +8,7 @@ type Props = {
 	children?: React.ReactNode
 }
 
-export const Layout = ({ children }: Props) => {
+export const MainLayout = ({ children }: Props) => {
 	const [sidebarIsCollapsed, setSidebarCollapsed] = useState(true)
 
 	const toggleSidebarCollapsed = useCallback(() => {

@@ -1,6 +1,6 @@
 import { SignInButton } from '@/features/authentication'
 
-import { HomeLayout } from '@/widgets/home-layout'
+import { HomeLayout } from '@/widgets/layouts'
 
 export const HomeScreen = () => {
 	return (
