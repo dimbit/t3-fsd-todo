@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	if (session) {
 		return {
 			redirect: {
-				destination: ROUTES.list.calcUrl(),
+				destination: ROUTES.kanban.calcUrl(),
 				permanent: false,
 			},
 		}
