@@ -11,7 +11,7 @@ type Props = {
 	className?: string
 	isLoading?: boolean
 } & Partial<ButtonStyleProps> &
-	React.ComponentPropsWithoutRef<'button'>
+	React.ComponentProps<'button'>
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
 	({ children, className, isLoading, fullWidth, ...props }, ref) => {
