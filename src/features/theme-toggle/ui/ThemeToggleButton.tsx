@@ -1,19 +1,31 @@
+import clsx from 'clsx'
+
 import { Switch } from '@/shared/ui-kit'
 
 import MoonIcon from '@/images/icons/moon.svg'
 
 import { useThemeToggle } from '../model'
 
-export const ThemeToggleButton = () => {
+type Props = {
+	withLabel?: boolean
+}
+
+export const ThemeToggleButton = ({ withLabel }: Props) => {
 	const { theme, toggleTheme } = useThemeToggle()
 	return (
 		<div
-			className={
-				'grid grid-cols-[auto_auto_1fr] justify-start gap-2 text-neutral-500 dark:text-neutral-300'
-			}
+			className={clsx([
+				'grid justify-start text-neutral-500 dark:text-neutral-300',
+				'whitespace-nowrap',
+				withLabel && 'grid-cols-[auto_auto_1fr] gap-2',
+			])}
 		>
-			<MoonIcon className={'stroke-current'} />
-			Dark theme
+			{withLabel && (
+				<>
+					<MoonIcon className={'stroke-current'} />
+					<span>Dark theme</span>
+				</>
+			)}
 			<Switch
 				className={'justify-self-end'}
 				checked={theme === 'dark'}

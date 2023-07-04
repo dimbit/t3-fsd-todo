@@ -31,7 +31,7 @@ export const Sidebar = memo(
 					</button>
 				</Section>
 				<Section>
-					<ThemeToggleButton />
+					<ThemeToggleButton withLabel={!isCollapsed} />
 					<SignOutButton
 						withIcon={isCollapsed}
 						withText={!isCollapsed}
