@@ -5,7 +5,7 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button, Input } from '@/shared/ui-kit'
+import { Button, Input, TextArea } from '@/shared/ui-kit'
 
 import type { FormData } from '../model'
 import { DeleteButton } from './DeleteButton'
@@ -48,23 +48,12 @@ export const Form = ({
 				error={errors.title?.message}
 				{...register('title')}
 			/>
-			<label className={'relative pb-7'}>
-				<textarea
-					className={clsx([
-						'w-full rounded border px-4 py-2 shadow outline-none',
-						'border-neutral-200 bg-white dark:border-neutral-500 dark:bg-neutral-700',
-						'focus:bg-neutral-100 enabled:hover:bg-neutral-100 focus:dark:bg-neutral-600 enabled:dark:hover:bg-neutral-600',
-					])}
-					rows={10}
-					placeholder={'Description'}
-					{...register('description')}
-				/>
-				{errors.description ? (
-					<span className={'absolute bottom-0 left-0 text-red-400'}>
-						{errors.description.message}
-					</span>
-				) : null}
-			</label>
+			<TextArea
+				rows={10}
+				placeholder={'Description'}
+				error={errors.description?.message}
+				{...register('description')}
+			/>
 			<select
 				className={clsx([
 					'cursor-pointer rounded border px-4 py-2 shadow outline-none',
