@@ -20,7 +20,7 @@ const navigation = [
 ]
 
 type Props = {
-	isCollapsed: boolean
+	isCollapsed?: boolean
 }
 
 export const NavigationBar = ({ isCollapsed }: Props) => {
