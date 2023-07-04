@@ -125,7 +125,7 @@ export const createOne = async ({
 }) => {
 	try {
 		const userId = ctx.session?.user.id
-		await ctx.prisma.task.create({
+		const response = await ctx.prisma.task.create({
 			data: {
 				title: input.title,
 				description: input.description,
@@ -140,10 +140,7 @@ export const createOne = async ({
 				user: true,
 			},
 		})
-		return {
-			...input,
-			userId,
-		}
+		return response
 	} catch (error) {
 		if (isHandledPrismaError(error)) {
 			throw new TRPCError({
