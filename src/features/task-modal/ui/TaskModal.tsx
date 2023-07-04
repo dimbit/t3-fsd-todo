@@ -20,16 +20,28 @@ export const TaskModal = () => {
 			closeModal()
 		},
 	})
+
 	const taskCreationMutation = api.tasks.createOne.useMutation({
-		onSuccess: async () => {
-			await trpcUtils.tasks.getAll.invalidate()
-			closeModal()
+		onSuccess: (newTask) => {
+			trpcUtils.tasks.getAll.setData(undefined, (prevTasks) => {
+				closeModal()
+				if (!prevTasks) {
+					return [newTask]
+				}
+				return [...prevTasks, newTask]
+			})
 		},
 	})
+
 	const taskDeletionMutation = api.tasks.deleteOne.useMutation({
-		onSuccess: async () => {
-			await trpcUtils.tasks.getAll.invalidate()
-			closeModal()
+		onSuccess: ({ id: deletedTaskId }) => {
+			trpcUtils.tasks.getAll.setData(undefined, (prevTasks) => {
+				closeModal()
+				if (!prevTasks) {
+					return prevTasks
+				}
+				return prevTasks.filter((task) => task.id !== deletedTaskId)
+			})
 		},
 	})
 
