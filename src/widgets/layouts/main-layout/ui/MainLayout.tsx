@@ -1,6 +1,8 @@
 import { useCallback, useState } from 'react'
 import clsx from 'clsx'
 
+import { useIsMobile } from '@/shared/hooks'
+
 import { Header } from './Header'
 import { MobileSidebar, Sidebar } from './Sidebar'
 
@@ -26,7 +28,7 @@ export const MainLayout = ({ children }: Props) => {
 		setSidebarIsOpenedOnMobile(false)
 	}, [])
 
-	const isMobile = true
+	const isMobile = useIsMobile()
 
 	return (
 		<main
