@@ -47,24 +47,26 @@ export const Form = ({
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className={'flex w-80 flex-col gap-4'}
+			className={'flex h-full w-full flex-col justify-between gap-4 sm:w-80'}
 		>
-			<Input
-				placeholder={'Title'}
-				autoFocus
-				error={errors.title?.message}
-				{...register('title')}
-			/>
-			<TextArea
-				rows={10}
-				placeholder={'Description'}
-				error={errors.description?.message}
-				{...register('description')}
-			/>
-			<Select
-				{...register('status')}
-				options={statusOptions}
-			/>
+			<div className={'flex w-full flex-col gap-4'}>
+				<Input
+					placeholder={'Title'}
+					autoFocus
+					error={errors.title?.message}
+					{...register('title')}
+				/>
+				<TextArea
+					rows={10}
+					placeholder={'Description'}
+					error={errors.description?.message}
+					{...register('description')}
+				/>
+				<Select
+					{...register('status')}
+					options={statusOptions}
+				/>
+			</div>
 			<div
 				className={clsx([
 					'grid gap-4',
