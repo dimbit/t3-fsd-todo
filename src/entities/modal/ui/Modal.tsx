@@ -1,4 +1,5 @@
 import { createPortal } from 'react-dom'
+import clsx from 'clsx'
 
 import { Button, Card } from '@/shared/ui-kit'
 
@@ -24,7 +25,12 @@ export const Modal = ({ isOpen, onClose, children }: Props) => {
 				className={'fixed bottom-0 left-0 right-0 top-0 z-50 flex'}
 				onClick={onBackgroundClick}
 			>
-				<Card className={'m-auto pt-16'}>
+				<Card
+					className={clsx([
+						'm-auto h-full w-full rounded-none pt-16',
+						'sm:h-auto sm:w-auto sm:rounded',
+					])}
+				>
 					<Button
 						withEqualPaddings
 						size={'small'}
