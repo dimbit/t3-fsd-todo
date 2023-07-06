@@ -5,7 +5,7 @@ import { SignOutButton } from '@/features/authentication'
 import { NavigationBar } from '@/features/navigation'
 import { ThemeToggleButton } from '@/features/theme-toggle'
 
-import { ProfilePreview } from '@/entities/profile-preview'
+import { ProfilePreview } from '@/entities/profile'
 
 import { Section } from './Section'
 
