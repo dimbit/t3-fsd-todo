@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react'
 import type { Status, Task } from '@prisma/client'
 
-import { useTaskModalStore } from '@/features/task-modal'
+import { useTaskModalStore } from '@/features/task-form'
 
 import { TaskCard } from '@/entities/task'
 

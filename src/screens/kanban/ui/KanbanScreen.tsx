@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Status } from '@prisma/client'
 
-import { TaskModal } from '@/features/task-modal'
+import { TaskModal } from '@/features/task-form'
 
 import { api } from '@/shared/api'
 import { LoadingState } from '@/shared/ui-kit'

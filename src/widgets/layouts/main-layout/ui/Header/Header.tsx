@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import clsx from 'clsx'
 
-import { useTaskModalStore } from '@/features/task-modal'
+import { useTaskModalStore } from '@/features/task-form'
 
 import { Button } from '@/shared/ui-kit/Button'
 
