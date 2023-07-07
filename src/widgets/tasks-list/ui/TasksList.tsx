@@ -1,47 +1,26 @@
-import { memo, useCallback } from 'react'
+import { memo } from 'react'
 import type { Status, Task } from '@prisma/client'
-
-import { useTaskModalStore } from '@/features/task-form'
 
 import { TaskCard } from '@/entities/task'
 
 type Props = {
 	tasks: Task[]
 	status: Status
+	onClickCard: React.ComponentProps<typeof TaskCard>['onClick']
 	bottomActionSlot: (status: Status) => React.ReactNode
 }
 
 export const TasksList = memo(
-	({ tasks = [], status, bottomActionSlot }: Props) => {
-		const openTaskEditingModal = useTaskModalStore.use.openTaskEditingModal()
-
-		const handleClickTaskCard = useCallback(
-			(taskData: {
-				id: string
-				title: string
-				description?: string | null
-				status: Status
-			}) => {
-				if (!taskData.id) {
-					return
-				}
-				openTaskEditingModal(taskData)
-			},
-			[openTaskEditingModal],
-		)
-
+	({ tasks = [], status, onClickCard, bottomActionSlot }: Props) => {
 		return (
 			<div className={'flex flex-col'}>
 				<div className={'flex flex-col gap-2'}>
 					{tasks?.map((task) => {
 						return (
 							<TaskCard
-								id={task.id}
-								title={task.title}
-								description={task.description}
-								status={status}
+								{...task}
 								key={task.id}
-								onClick={handleClickTaskCard}
+								onClick={onClickCard}
 							/>
 						)
 					})}

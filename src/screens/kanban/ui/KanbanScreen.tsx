@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { Status } from '@prisma/client'
 
 import { TaskModal } from '@/features/task-form'
+import { useTaskModalStore } from '@/features/task-form'
 import { AddTaskButton } from '@/features/task-form/ui'
 
 import { api } from '@/shared/api'
@@ -28,6 +29,8 @@ export const KanbanScreen = () => {
 		() => arrangeTasksByStatus(tasks ?? []),
 		[tasks],
 	)
+
+	const openTaskEditModal = useTaskModalStore.use.openTaskEditingModal()
 
 	return (
 		<>
@@ -64,6 +67,7 @@ export const KanbanScreen = () => {
 										key={status}
 										tasks={tasksByStatus[status]}
 										status={status}
+										onClickCard={openTaskEditModal}
 										bottomActionSlot={(status) => (
 											<AddTaskButton taskInitialData={{ status }}>
 												Add
