@@ -1,2 +1,2 @@
-export { AddTaskButton } from './openTaskButtons'
+export { AddTaskButton } from './AddTaskButton'
 export { TaskModal } from './TaskModal'

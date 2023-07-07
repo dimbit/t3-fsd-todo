@@ -5,7 +5,7 @@ import type { FormData } from './types'
 
 export const useTaskFormHandlers = () => {
 	const closeModal = useTaskModalStore.use.closeModal()
-	const initialTaskData = useTaskModalStore.use.initialTaskData()
+	const taskInitialData = useTaskModalStore.use.taskInitialData()
 
 	const trpcUtils = api.useContext()
 
@@ -41,9 +41,9 @@ export const useTaskFormHandlers = () => {
 	})
 
 	const onSubmitEditing = (formData: FormData) => {
-		if (!initialTaskData?.id) return
+		if (!taskInitialData?.id) return
 		taskEditingMutation.mutate({
-			id: initialTaskData.id,
+			id: taskInitialData.id,
 			title: formData.title,
 			description: formData.description ?? undefined,
 			status: formData.status,
@@ -59,9 +59,9 @@ export const useTaskFormHandlers = () => {
 	}
 
 	const onDeleteTask = () => {
-		if (!initialTaskData?.id) return
+		if (!taskInitialData?.id) return
 		taskDeletionMutation.mutate({
-			id: initialTaskData.id,
+			id: taskInitialData.id,
 		})
 	}
 

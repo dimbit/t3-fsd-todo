@@ -1,2 +1,2 @@
 export { useTaskModalStore } from './model'
-export { TaskModal } from './ui/TaskModal'
+export { AddTaskButton, TaskModal } from './ui'

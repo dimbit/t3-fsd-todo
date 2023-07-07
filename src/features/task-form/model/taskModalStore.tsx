@@ -6,49 +6,56 @@ import { immer } from 'zustand/middleware/immer'
 import { createSelectors } from '@/shared/storeUtils'
 
 type Mode = 'editing' | 'creation'
-type InitialTaskData = Partial<
+type TaskInitialData = Partial<
 	Pick<Task, 'id' | 'title' | 'description' | 'status'>
 >
 type State = {
 	isOpen: boolean
-	mode?: Mode
-	initialTaskData: InitialTaskData | null
+	mode?: Mode | null
+	taskInitialData: TaskInitialData | null
 }
-type Actions = {
-	openTaskEditingModal: (
-		initialTaskData: InitialTaskData & Required<Pick<InitialTaskData, 'id'>>,
-	) => void
-	openTaskCreationModal: (initialTaskData: Omit<InitialTaskData, 'id'>) => void
+
+export type EditingFormInitialData = TaskInitialData &
+	Required<Pick<TaskInitialData, 'id'>>
+export type CreationFormInitialData = Omit<TaskInitialData, 'id'>
+
+export type Actions = {
+	openTaskEditingModal: (taskInitialData: EditingFormInitialData) => void
+	openTaskCreationModal: (taskInitialData: CreationFormInitialData) => void
 	closeModal: () => void
+}
+
+const initialState = {
+	isOpen: false,
+	mode: null,
+	taskInitialData: null,
 }
 
 export const useTaskModalStoreBase = create<State & Actions>()(
 	persist(
 		devtools(
 			immer((set) => ({
-				isOpen: false,
-				initialTaskData: null,
-				mode: undefined,
+				...initialState,
 
 				closeModal: () => {
 					set((state) => {
-						state.isOpen = false
-						state.initialTaskData = null
-						delete state.mode
+						state.isOpen = initialState.isOpen
+						state.mode = initialState.mode
+						state.taskInitialData = initialState.taskInitialData
 					})
 				},
-				openTaskEditingModal: (initialTaskData) => {
+				openTaskEditingModal: (taskInitialData) => {
 					set((state) => {
 						state.isOpen = true
 						state.mode = 'editing'
-						state.initialTaskData = initialTaskData
+						state.taskInitialData = taskInitialData
 					})
 				},
-				openTaskCreationModal: (initialTaskData) => {
+				openTaskCreationModal: (taskInitialData) => {
 					set((state) => {
-						state.mode = 'creation'
 						state.isOpen = true
-						state.initialTaskData = initialTaskData
+						state.mode = 'creation'
+						state.taskInitialData = taskInitialData
 					})
 				},
 			})),
