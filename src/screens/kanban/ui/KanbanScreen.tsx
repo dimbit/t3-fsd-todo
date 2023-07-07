@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { Status } from '@prisma/client'
 
 import { TaskModal } from '@/features/task-form'
+import { AddTaskButton } from '@/features/task-form/ui'
 
 import { api } from '@/shared/api'
 import { LoadingState } from '@/shared/ui-kit'
@@ -63,6 +64,11 @@ export const KanbanScreen = () => {
 										key={status}
 										tasks={tasksByStatus[status]}
 										status={status}
+										bottomActionSlot={(status) => (
+											<AddTaskButton taskInitialData={{ status }}>
+												Add
+											</AddTaskButton>
+										)}
 									/>
 								)
 							})}
