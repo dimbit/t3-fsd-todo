@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import clsx from 'clsx'
 
-import { useTaskModalStore } from '@/features/task-form'
+import { AddTaskButton } from '@/features/task-form'
 
 import { Button } from '@/shared/ui-kit/Button'
 
@@ -11,12 +11,6 @@ type Props = {
 	openMobileSidebar: () => void
 }
 export const Header = memo(({ openMobileSidebar }: Props) => {
-	const openTaskCreationModal = useTaskModalStore.use.openTaskCreationModal()
-
-	const handleClickAddTask = () => {
-		openTaskCreationModal({})
-	}
-
 	return (
 		<div
 			className={clsx([
@@ -30,7 +24,7 @@ export const Header = memo(({ openMobileSidebar }: Props) => {
 			>
 				<HamburgerIcon />
 			</Button>
-			<Button onClick={handleClickAddTask}>Add task</Button>
+			<AddTaskButton>Add task</AddTaskButton>
 		</div>
 	)
 })
