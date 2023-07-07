@@ -5,11 +5,12 @@ import { TaskModal } from '@/features/task-form'
 import { useTaskModalStore } from '@/features/task-form'
 import { AddTaskButton } from '@/features/task-form/ui'
 
+import { TaskList } from '@/entities/task'
+
 import { api } from '@/shared/api'
 import { LoadingState } from '@/shared/ui-kit'
 
 import { MainLayout } from '@/widgets/layouts'
-import { TasksList } from '@/widgets/tasks-list'
 
 import { arrangeTasksByStatus } from '../model'
 
@@ -63,7 +64,7 @@ export const KanbanScreen = () => {
 						<div className={'grid grid-cols-kanban gap-4 px-4 pb-4'}>
 							{Object.values(Status).map((status) => {
 								return (
-									<TasksList
+									<TaskList
 										key={status}
 										tasks={tasksByStatus[status]}
 										status={status}

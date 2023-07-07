@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import type { Status, Task } from '@prisma/client'
 
-import { TaskCard } from '@/entities/task'
+import { TaskCard } from './TaskCard'
 
 type Props = {
 	tasks: Task[]
@@ -10,7 +10,7 @@ type Props = {
 	bottomActionSlot: (status: Status) => React.ReactNode
 }
 
-export const TasksList = memo(
+export const TaskList = memo(
 	({ tasks = [], status, onClickCard, bottomActionSlot }: Props) => {
 		return (
 			<div className={'flex flex-col'}>
@@ -33,4 +33,4 @@ export const TasksList = memo(
 	},
 )
 
-TasksList.displayName = 'TasksList'
+TaskList.displayName = 'TaskList'
