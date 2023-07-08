@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import clsx from 'clsx'
 
-import { navigation } from '../model/navigation'
+import { navigation } from '../model'
 
 type Props = {
 	isCollapsed?: boolean
