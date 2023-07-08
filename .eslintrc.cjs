@@ -60,6 +60,10 @@ const config = {
 			},
 		],
 		'simple-import-sort/exports': 'error',
+		// feature-sliced/public-api
+		'import/no-internal-modules': 'warn',
+		// feature-sliced/layers-slices
+		'boundaries/element-types': 'warn',
 	},
 }
 
