@@ -3,8 +3,8 @@ import clsx from 'clsx'
 
 import { AddTaskButton } from '@/features/task-form'
 
+import HamburgerIcon from '@/shared/assets/icons/hamburger.svg'
 import { Button } from '@/shared/ui'
-import HamburgerIcon from '@/shared/ui/icons/hamburger.svg'
 
 type Props = {
 	openMobileSidebar: () => void

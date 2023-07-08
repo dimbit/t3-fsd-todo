@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
+import MoonIcon from '@/shared/assets/icons/moon.svg'
 import { Switch } from '@/shared/ui'
-import MoonIcon from '@/shared/ui/icons/moon.svg'
 
 import { useThemeToggle } from '../model'
 

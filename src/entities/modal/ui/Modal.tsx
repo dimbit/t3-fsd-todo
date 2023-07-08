@@ -1,8 +1,8 @@
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
 
+import CloseIcon from '@/shared/assets/icons/close.svg'
 import { Button, Card } from '@/shared/ui'
-import CloseIcon from '@/shared/ui/icons/close.svg'
 
 import { MODAL_ROOT_NODE_ID } from '../model'
 import { useCloseModal, useIsMounted, usePreventBodyScroll } from '../model'

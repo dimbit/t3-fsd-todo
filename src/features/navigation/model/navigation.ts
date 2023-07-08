@@ -1,5 +1,5 @@
+import KanbanIcon from '@/shared/assets/icons/kanban.svg'
 import { ROUTES } from '@/shared/lib'
-import KanbanIcon from '@/shared/ui/icons/kanban.svg'
 import ListIcon from '@/shared/ui/icons/list.svg'
 
 export const navigation = [
