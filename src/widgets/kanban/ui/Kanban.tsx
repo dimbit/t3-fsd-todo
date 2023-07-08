@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { Status } from '@prisma/client'
 
 import { useTaskModalStore } from '@/features/task-form'
-import { AddTaskButton } from '@/features/task-form/ui'
+import { AddTaskButton } from '@/features/task-form'
 
 import { TaskList } from '@/entities/task'
 
