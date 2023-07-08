@@ -2,11 +2,11 @@ import { createPortal } from 'react-dom'
 import clsx from 'clsx'
 
 import CloseIcon from '@/shared/assets/icons/close.svg'
+import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { Button, Card } from '@/shared/ui'
 
 import { MODAL_ROOT_NODE_ID } from '../model'
 import { useCloseModal, useIsMounted, usePreventBodyScroll } from '../model'
-
 type Props = {
 	isOpen: boolean
 	onClose: () => void
@@ -18,6 +18,11 @@ export const Modal = ({ isOpen, onClose, children }: Props) => {
 	usePreventBodyScroll(isOpen)
 	const { onBackgroundClick } = useCloseModal(onClose)
 
+	const { className: debugClassName, ...rest } = useFSDLayerDebug(
+		'entities',
+		Modal.name,
+	)
+
 	if (isOpen && isMounted) {
 		return createPortal(
 			<div
@@ -25,9 +30,11 @@ export const Modal = ({ isOpen, onClose, children }: Props) => {
 				onClick={onBackgroundClick}
 			>
 				<Card
+					{...rest}
 					className={clsx([
 						'm-auto h-full w-full rounded-none pt-16',
 						'sm:h-auto sm:w-auto sm:rounded',
+						debugClassName,
 					])}
 				>
 					<Button

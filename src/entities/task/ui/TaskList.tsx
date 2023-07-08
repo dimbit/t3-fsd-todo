@@ -1,5 +1,8 @@
 import { memo } from 'react'
 import type { Status, Task } from '@prisma/client'
+import clsx from 'clsx'
+
+import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 
 import { TaskCard } from './TaskCard'
 
@@ -12,8 +15,16 @@ type Props = {
 
 export const TaskList = memo(
 	({ tasks = [], status, onClickCard, bottomActionSlot }: Props) => {
+		const { className: debugClassName, ...rest } = useFSDLayerDebug(
+			'entities',
+			TaskList.displayName ?? '',
+		)
+
 		return (
-			<div className={'flex flex-col'}>
+			<div
+				{...rest}
+				className={clsx(['relative mt-1 flex flex-col', debugClassName])}
+			>
 				<div className={'flex flex-col gap-2'}>
 					{tasks?.map((task) => {
 						return (

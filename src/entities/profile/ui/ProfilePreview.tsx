@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/react'
 import clsx from 'clsx'
 
+import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { Avatar } from '@/shared/ui'
 
 type Props = {
@@ -9,12 +10,20 @@ type Props = {
 }
 export const ProfilePreview = ({ className, withName }: Props) => {
 	const { data: session } = useSession()
+
+	const { className: debugClassName, ...rest } = useFSDLayerDebug(
+		'entities',
+		ProfilePreview.name,
+	)
+
 	return (
 		<div
+			{...rest}
 			className={clsx([
 				'grid h-12 grid-rows-2',
 				withName && 'grid-cols-auto-1fr gap-x-2',
 				className,
+				debugClassName,
 			])}
 		>
 			<Avatar
