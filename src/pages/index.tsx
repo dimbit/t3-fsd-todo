@@ -2,7 +2,7 @@ import type { GetServerSideProps } from 'next'
 
 import { HomeScreen } from '@/screens/home'
 
-import { ROUTES } from '@/shared/routes'
+import { ROUTES } from '@/shared/lib'
 
 import { getServerAuthSession } from '../server/auth'
 

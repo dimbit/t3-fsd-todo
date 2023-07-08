@@ -1,4 +1,4 @@
-import { ROUTES } from '@/shared/routes'
+import { ROUTES } from '@/shared/lib'
 import KanbanIcon from '@/shared/ui/icons/kanban.svg'
 import ListIcon from '@/shared/ui/icons/list.svg'
 

@@ -3,7 +3,7 @@ import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
-import { createSelectors } from '@/shared/storeUtils'
+import { createSelectors } from '@/shared/lib'
 
 type Mode = 'editing' | 'creation'
 type TaskInitialData = Partial<

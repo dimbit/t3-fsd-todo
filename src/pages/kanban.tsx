@@ -2,7 +2,7 @@ import type { GetServerSideProps } from 'next'
 
 import { KanbanScreen } from '@/screens/kanban'
 
-import { ROUTES } from '@/shared/routes'
+import { ROUTES } from '@/shared/lib'
 
 import { getServerAuthSession } from '../server/auth'
 
