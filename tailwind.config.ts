@@ -11,7 +11,7 @@ export const FSDDebugColors = [
 
 const generateFSDDebugColorProperties = () => {
 	const layers = ['shared', 'entities', 'features', 'widgets', 'pages']
-	const propertyPrefixies = ['border', 'after:text']
+	const propertyPrefixies = ['outline', 'after:text']
 	const FSDDebugProperties = layers.reduce<string[]>((accumulator, layer) => {
 		const utilitiesForCurrentColor = propertyPrefixies.map(
 			(prefix) => `${prefix}-${layer}`,
