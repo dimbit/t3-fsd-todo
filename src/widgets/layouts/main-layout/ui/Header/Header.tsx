@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 import { AddTaskButton } from '@/features/task-form'
 
-import { Button } from '@/shared/ui/Button'
+import { Button } from '@/shared/ui'
 import HamburgerIcon from '@/shared/ui/icons/hamburger.svg'
 
 type Props = {

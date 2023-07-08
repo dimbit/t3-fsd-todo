@@ -1,6 +1,6 @@
 import { signIn } from 'next-auth/react'
 
-import { Button } from '@/shared/ui/Button'
+import { Button } from '@/shared/ui'
 
 export const SignInButton = () => {
 	return (
