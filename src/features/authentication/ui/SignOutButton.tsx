@@ -1,8 +1,8 @@
 import { signOut } from 'next-auth/react'
 import clsx from 'clsx'
 
+import LogOutIcon from '@/shared/assets/icons/log-out.svg'
 import { Button } from '@/shared/ui/Button'
-import LogOutIcon from '@/shared/ui/icons/log-out.svg'
 
 type Props = {
 	withIcon?: boolean
