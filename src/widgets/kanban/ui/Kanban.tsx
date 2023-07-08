@@ -65,9 +65,7 @@ export const Kanban = () => {
 								status={status}
 								onClickCard={openTaskEditModal}
 								bottomActionSlot={(status) => (
-									<AddTaskButton taskInitialData={{ status }}>
-										Add
-									</AddTaskButton>
+									<AddTaskButton status={status}>Add</AddTaskButton>
 								)}
 							/>
 						)
