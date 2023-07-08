@@ -5,7 +5,7 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button, Input, Select, TextArea } from '@/shared/ui-kit'
+import { Button, Input, Select, TextArea } from '@/shared/ui'
 
 import type { FormData } from '../model'
 import { DeleteButton } from './DeleteButton'

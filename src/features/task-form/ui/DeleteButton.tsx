@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 
-import { Button } from '@/shared/ui-kit'
+import { Button } from '@/shared/ui'
 
 type Props = React.ComponentPropsWithoutRef<'button'>
 

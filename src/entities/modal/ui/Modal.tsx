@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
 
-import { Button, Card } from '@/shared/ui-kit'
+import { Button, Card } from '@/shared/ui'
 
 import CloseIcon from '@/images/icons/close.svg'
 

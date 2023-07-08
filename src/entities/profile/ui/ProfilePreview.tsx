@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react'
 import clsx from 'clsx'
 
-import { Avatar } from '@/shared/ui-kit'
+import { Avatar } from '@/shared/ui'
 
 type Props = {
 	className?: string

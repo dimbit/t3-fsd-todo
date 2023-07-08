@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import type { Status } from '@prisma/client'
 
-import { Card } from '@/shared/ui-kit'
+import { Card } from '@/shared/ui'
 
 type TaskProps = {
 	id: string

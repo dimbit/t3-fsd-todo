@@ -1,7 +1,7 @@
 import { signOut } from 'next-auth/react'
 import clsx from 'clsx'
 
-import { Button } from '@/shared/ui-kit/Button'
+import { Button } from '@/shared/ui/Button'
 
 import LogOutButton from '@/images/icons/log-out.svg'
 

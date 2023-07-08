@@ -7,7 +7,7 @@ import { AddTaskButton } from '@/features/task-form/ui'
 import { TaskList } from '@/entities/task'
 
 import { api } from '@/shared/api'
-import { LoadingState } from '@/shared/ui-kit'
+import { LoadingState } from '@/shared/ui'
 
 import { arrangeTasksByStatus } from '../utils'
 

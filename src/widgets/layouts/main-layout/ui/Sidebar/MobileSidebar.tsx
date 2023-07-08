@@ -7,7 +7,7 @@ import { ThemeToggleButton } from '@/features/theme-toggle'
 
 import { ProfilePreview } from '@/entities/profile'
 
-import { Button } from '@/shared/ui-kit'
+import { Button } from '@/shared/ui'
 
 import CloseIcon from '@/images/icons/close.svg'
 

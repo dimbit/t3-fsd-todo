@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { Button } from '@/shared/ui-kit'
+import { Button } from '@/shared/ui'
 
 import { type CreationFormInitialData, useTaskModalStore } from '../model'
 

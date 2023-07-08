@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 import { AddTaskButton } from '@/features/task-form'
 
-import { Button } from '@/shared/ui-kit/Button'
+import { Button } from '@/shared/ui/Button'
 
 import HamburgerIcon from '@/images/icons/hamburger.svg'
 
