@@ -2,8 +2,7 @@ import { signOut } from 'next-auth/react'
 import clsx from 'clsx'
 
 import { Button } from '@/shared/ui/Button'
-
-import LogOutButton from '@/images/icons/log-out.svg'
+import LogOutIcon from '@/shared/ui/icons/log-out.svg'
 
 type Props = {
 	withIcon?: boolean
@@ -16,7 +15,7 @@ export const SignOutButton = ({ withIcon, withText }: Props) => {
 				void signOut()
 			}}
 		>
-			{withIcon && <LogOutButton />}
+			{withIcon && <LogOutIcon />}
 			{withText && (
 				<span className={clsx('text-ellipsis whitespace-nowrap')}>
 					Sign out

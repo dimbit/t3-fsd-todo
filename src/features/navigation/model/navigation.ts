@@ -1,7 +1,6 @@
 import { ROUTES } from '@/shared/routes'
-
-import KanbanIcon from '@/images/icons/kanban.svg'
-import ListIcon from '@/images/icons/list.svg'
+import KanbanIcon from '@/shared/ui/icons/kanban.svg'
+import ListIcon from '@/shared/ui/icons/list.svg'
 
 export const navigation = [
 	{
