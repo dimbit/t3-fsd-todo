@@ -1,5 +1,6 @@
 import { memo, useCallback } from 'react'
 
+import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { Button } from '@/shared/ui'
 
 import { type CreationFormInitialData, useTaskModalStore } from '../model'
@@ -18,9 +19,16 @@ export const AddTaskButton = memo(
 			openTaskCreationModal({ title, description, status })
 		}, [title, description, status, openTaskCreationModal])
 
+		const { className: debugClassName, ...rest } = useFSDLayerDebug(
+			'features',
+			AddTaskButton.displayName ?? '',
+		)
+
 		return (
 			<Button
+				{...rest}
 				onClick={handleClickAddTaskButton}
+				className={debugClassName}
 				{...props}
 			>
 				{children}

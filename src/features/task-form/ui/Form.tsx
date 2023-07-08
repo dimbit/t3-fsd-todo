@@ -5,6 +5,7 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { Button, Input, Select, TextArea } from '@/shared/ui'
 
 import type { FormData } from '../model'
@@ -44,10 +45,19 @@ export const Form = ({
 		}
 	})
 
+	const { className: debugClassName, ...rest } = useFSDLayerDebug(
+		'features',
+		Form.name,
+	)
+
 	return (
 		<form
+			{...rest}
 			onSubmit={handleSubmit(onSubmit)}
-			className={'flex h-full w-full flex-col justify-between gap-4 sm:w-80'}
+			className={clsx([
+				'flex h-full w-full flex-col justify-between gap-4 sm:w-80',
+				debugClassName,
+			])}
 		>
 			<div className={'flex w-full flex-col gap-4'}>
 				<Input
