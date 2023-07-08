@@ -19,7 +19,12 @@ const config = {
 		project: path.join(__dirname, 'tsconfig.json'),
 	},
 	plugins: ['@typescript-eslint', 'simple-import-sort'],
-	extends: ['next/core-web-vitals', 'plugin:@typescript-eslint/recommended'],
+	extends: [
+		'next/core-web-vitals',
+		'plugin:@typescript-eslint/recommended',
+		'@feature-sliced/eslint-config/rules/public-api',
+		'@feature-sliced/eslint-config/rules/layers-slices',
+	],
 	rules: {
 		'@typescript-eslint/consistent-type-imports': [
 			'warn',
