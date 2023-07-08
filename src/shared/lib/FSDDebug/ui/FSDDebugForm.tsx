@@ -18,11 +18,13 @@ export const FSDDebugForm = () => {
 	}
 
 	return (
-		<div className={'fixed bottom-0 right-0 flex flex-col bg-neutral-500'}>
-			FSD DEBUG FORM
+		<div className={'fixed bottom-0 right-0 flex flex-col bg-neutral-500 p-2'}>
 			{Object.entries(layers).map(([layer, checked]) => {
 				return (
-					<label key={layer}>
+					<label
+						className={'flex justify-end gap-2'}
+						key={layer}
+					>
 						{layer}
 						<input
 							type='checkbox'

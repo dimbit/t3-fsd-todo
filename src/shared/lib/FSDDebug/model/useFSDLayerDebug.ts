@@ -16,7 +16,7 @@ export const useFSDLayerDebug = (layer: Layer, name: string) => {
 		['data-after-content']: path,
 		className: isActive
 			? clsx([
-					'outline after:absolute after:right-0 after:text-x after:content-[attr(data-after-content)]',
+					'outline after:absolute after:right-0 after:text-xs after:content-[attr(data-after-content)]',
 					...colorUtilities,
 			  ])
 			: '',
