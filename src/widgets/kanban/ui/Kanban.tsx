@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { Status } from '@prisma/client'
+import clsx from 'clsx'
 
 import { useTaskModalStore } from '@/features/task-form'
 import { AddTaskButton } from '@/features/task-form'
@@ -7,6 +8,7 @@ import { AddTaskButton } from '@/features/task-form'
 import { TaskList } from '@/entities/task'
 
 import { api } from '@/shared/api'
+import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { LoadingState } from '@/shared/ui'
 
 import { arrangeTasksByStatus } from '../utils'
@@ -30,11 +32,18 @@ export const Kanban = () => {
 
 	const openTaskEditModal = useTaskModalStore.use.openTaskEditingModal()
 
+	const { className: debugClassName, ...rest } = useFSDLayerDebug(
+		'widgets',
+		Kanban.name,
+	)
+
 	return (
 		<div
-			className={
-				'col-start-2 col-end-3 grid grid-flow-row content-start overflow-x-auto'
-			}
+			{...rest}
+			className={clsx([
+				'col-start-2 col-end-3 m-1 grid grid-flow-row content-start overflow-x-auto',
+				debugClassName,
+			])}
 		>
 			<div
 				className={

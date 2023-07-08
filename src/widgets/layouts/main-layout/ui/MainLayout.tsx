@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import clsx from 'clsx'
 
+import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { useIsMobile } from '@/shared/lib/hooks'
 
 import { Header } from './Header'
@@ -30,14 +31,21 @@ export const MainLayout = ({ children }: Props) => {
 
 	const isMobile = useIsMobile()
 
+	const { className: debugClassName, ...rest } = useFSDLayerDebug(
+		'widgets',
+		MainLayout.name,
+	)
+
 	return (
 		<main
+			{...rest}
 			className={clsx([
 				'relative grid h-full grid-cols-1 grid-rows-auto-1fr',
 				'sm:transition-[grid-template-columns]',
 				sidebarIsCollapsed
 					? 'sm:grid-cols-sidebar-collapsed'
 					: 'sm:grid-cols-sidebar',
+				debugClassName,
 			])}
 		>
 			<Header openMobileSidebar={openMobileSidebar} />
