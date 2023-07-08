@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import clsx from 'clsx'
 
-import { useIsMobile } from '@/shared/hooks'
+import { useIsMobile } from '@/shared/lib/hooks'
 
 import { Header } from './Header'
 import { MobileSidebar, Sidebar } from './Sidebar'
