@@ -22,3 +22,7 @@ In FSD, a project consists of `layers`, each layer is made up of `slices` and ea
 
 ### Layers:
 ![FSD layers](https://feature-sliced.design/assets/ideal-img/visual_schema.b6c18f6.1030.jpg)
+
+### FSD Debug mode
+
+![FSD debug](https://github.com/dimbit/t3-fsd-todo/blob/main/public/fsd-debug-screenshot.png?raw=true)
