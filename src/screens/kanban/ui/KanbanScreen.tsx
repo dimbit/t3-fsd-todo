@@ -1,6 +1,5 @@
+import { FSDDebugForm } from '@/features/fsd-debug'
 import { TaskModal } from '@/features/task-form'
-
-import { FSDDebugForm } from '@/shared/lib/FSDDebug'
 
 import { Kanban } from '@/widgets/kanban'
 import { MainLayout } from '@/widgets/layouts'

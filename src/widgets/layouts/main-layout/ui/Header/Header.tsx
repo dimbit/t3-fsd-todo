@@ -1,10 +1,10 @@
 import { memo } from 'react'
 import clsx from 'clsx'
 
+import { useFSDLayerDebug } from '@/features/fsd-debug'
 import { AddTaskButton } from '@/features/task-form'
 
 import HamburgerIcon from '@/shared/assets/icons/hamburger.svg'
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { Button } from '@/shared/ui'
 
 type Props = {

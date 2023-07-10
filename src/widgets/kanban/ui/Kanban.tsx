@@ -2,13 +2,13 @@ import { useMemo } from 'react'
 import { Status } from '@prisma/client'
 import clsx from 'clsx'
 
+import { useFSDLayerDebug } from '@/features/fsd-debug'
 import { useTaskModalStore } from '@/features/task-form'
 import { AddTaskButton } from '@/features/task-form'
 
 import { TaskList } from '@/entities/task'
 
 import { api } from '@/shared/api'
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { LoadingState } from '@/shared/ui'
 
 import { arrangeTasksByStatus } from '../utils'

@@ -2,13 +2,13 @@ import { memo } from 'react'
 import clsx from 'clsx'
 
 import { SignOutButton } from '@/features/authentication'
+import { useFSDLayerDebug } from '@/features/fsd-debug'
 import { NavigationBar } from '@/features/navigation'
 import { ThemeToggleButton } from '@/features/theme-toggle'
 
 import { ProfilePreview } from '@/entities/profile'
 
 import CloseIcon from '@/shared/assets/icons/close.svg'
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { Button } from '@/shared/ui'
 
 import { Section } from './Section'

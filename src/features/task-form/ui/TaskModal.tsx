@@ -1,6 +1,6 @@
-import { Modal } from '@/entities/modal'
+import { useFSDLayerDebug } from '@/features/fsd-debug'
 
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
+import { Modal } from '@/entities/modal'
 
 import { useTaskFormHandlers, useTaskModalStore } from '../model'
 import { Form } from './Form'

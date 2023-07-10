@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react'
 import clsx from 'clsx'
 
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
+import { useFSDLayerDebug } from '@/features/fsd-debug'
+
 import { useIsMobile } from '@/shared/lib/hooks'
 
 import { Header } from './Header'

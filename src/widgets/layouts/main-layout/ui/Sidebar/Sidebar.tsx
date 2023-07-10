@@ -2,12 +2,11 @@ import { memo } from 'react'
 import clsx from 'clsx'
 
 import { SignOutButton } from '@/features/authentication'
+import { useFSDLayerDebug } from '@/features/fsd-debug'
 import { NavigationBar } from '@/features/navigation'
 import { ThemeToggleButton } from '@/features/theme-toggle'
 
 import { ProfilePreview } from '@/entities/profile'
-
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 
 import { Section } from './Section'
 
