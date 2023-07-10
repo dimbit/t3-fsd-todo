@@ -14,7 +14,11 @@ export const DeleteButton = ({ className, ...props }: Props) => {
 	return (
 		<Button
 			{...rest}
-			className={clsx(['dark:border-red-400', className, debugClassName])}
+			className={clsx([
+				'enabled:border-red-400 enabled:dark:border-red-400',
+				className,
+				debugClassName,
+			])}
 			{...props}
 		>
 			Delete
