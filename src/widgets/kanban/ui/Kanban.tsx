@@ -32,17 +32,21 @@ export const Kanban = () => {
 
 	const openTaskEditModal = useTaskModalStore.use.openTaskEditingModal()
 
-	const { className: debugClassName, ...rest } = useFSDLayerDebug(
-		'widgets',
-		Kanban.name,
-	)
+	const { className: kanbanDebugClassName, ...kanbanDataAttributes } =
+		useFSDLayerDebug('widgets', Kanban.name)
+	const { className: taskListDebugClassName, ...taskListDataAttributes } =
+		useFSDLayerDebug('entities', TaskList.name)
+	const {
+		className: addTaskButtonDebugClassName,
+		...addTaskButtonDataAttributes
+	} = useFSDLayerDebug('features', AddTaskButton.displayName ?? '')
 
 	return (
 		<div
-			{...rest}
+			{...kanbanDataAttributes}
 			className={clsx([
 				'col-start-2 col-end-3 m-1 grid grid-flow-row content-start overflow-x-auto',
-				debugClassName,
+				kanbanDebugClassName,
 			])}
 		>
 			<div
@@ -73,8 +77,16 @@ export const Kanban = () => {
 								tasks={tasksByStatus[status]}
 								status={status}
 								onClickCard={openTaskEditModal}
+								className={taskListDebugClassName}
+								{...taskListDataAttributes}
 								bottomActionSlot={(status) => (
-									<AddTaskButton status={status}>Add</AddTaskButton>
+									<AddTaskButton
+										{...addTaskButtonDataAttributes}
+										className={addTaskButtonDebugClassName}
+										status={status}
+									>
+										Add
+									</AddTaskButton>
 								)}
 							/>
 						)

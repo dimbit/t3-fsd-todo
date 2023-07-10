@@ -2,8 +2,6 @@ import { memo } from 'react'
 import type { Status, Task } from '@prisma/client'
 import clsx from 'clsx'
 
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
-
 import { TaskCard } from './TaskCard'
 
 type Props = {
@@ -11,20 +9,13 @@ type Props = {
 	status: Status
 	onClickCard: React.ComponentProps<typeof TaskCard>['onClick']
 	bottomActionSlot: (status: Status) => React.ReactNode
+	className?: string
 }
 
 export const TaskList = memo(
-	({ tasks = [], status, onClickCard, bottomActionSlot }: Props) => {
-		const { className: debugClassName, ...rest } = useFSDLayerDebug(
-			'entities',
-			TaskList.displayName ?? '',
-		)
-
+	({ tasks = [], status, onClickCard, bottomActionSlot, className }: Props) => {
 		return (
-			<div
-				{...rest}
-				className={clsx(['relative mt-1 flex flex-col', debugClassName])}
-			>
+			<div className={clsx(['relative mt-1 flex flex-col', className])}>
 				<div className={'flex flex-col gap-2'}>
 					{tasks?.map((task) => {
 						return (
