@@ -2,7 +2,6 @@ import { createPortal } from 'react-dom'
 import clsx from 'clsx'
 
 import CloseIcon from '@/shared/assets/icons/close.svg'
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { Button, Card } from '@/shared/ui'
 
 import { MODAL_ROOT_NODE_ID } from '../model'
@@ -11,17 +10,19 @@ type Props = {
 	isOpen: boolean
 	onClose: () => void
 	children?: React.ReactNode
-}
+	className?: string
+} & { [key: `data-${string}`]: string | undefined }
 
-export const Modal = ({ isOpen, onClose, children }: Props) => {
+export const Modal = ({
+	isOpen,
+	onClose,
+	children,
+	className,
+	...dataAttributes
+}: Props) => {
 	const isMounted = useIsMounted()
 	usePreventBodyScroll(isOpen)
 	const { onBackgroundClick } = useCloseModal(onClose)
-
-	const { className: debugClassName, ...rest } = useFSDLayerDebug(
-		'entities',
-		Modal.name,
-	)
 
 	if (isOpen && isMounted) {
 		return createPortal(
@@ -30,12 +31,12 @@ export const Modal = ({ isOpen, onClose, children }: Props) => {
 				onClick={onBackgroundClick}
 			>
 				<Card
-					{...rest}
 					className={clsx([
 						'm-auto h-full w-full rounded-none pt-16',
 						'sm:h-auto sm:w-auto sm:rounded',
-						debugClassName,
+						className,
 					])}
+					{...dataAttributes}
 				>
 					<Button
 						withEqualPaddings

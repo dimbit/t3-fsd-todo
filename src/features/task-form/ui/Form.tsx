@@ -5,7 +5,6 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { Button, Input, Select, TextArea } from '@/shared/ui'
 
 import type { FormData } from '../model'
@@ -15,7 +14,8 @@ type Props = Partial<FormData> & {
 	onSubmit: SubmitHandler<FormData>
 	onDelete: SubmitHandler<FormData>
 	withDeleteButton?: boolean
-}
+	className?: string
+} & { [key: `data-${string}`]: string | undefined }
 
 export const Form = ({
 	title,
@@ -24,6 +24,8 @@ export const Form = ({
 	onSubmit,
 	onDelete,
 	withDeleteButton,
+	className,
+	...dataAttributes
 }: Props) => {
 	const {
 		register,
@@ -45,21 +47,16 @@ export const Form = ({
 		}
 	})
 
-	const { className: debugClassName, ...rest } = useFSDLayerDebug(
-		'features',
-		Form.name,
-	)
-
 	const handleDelete = handleSubmit(onDelete)
 
 	return (
 		<form
-			{...rest}
 			onSubmit={handleSubmit(onSubmit)}
 			className={clsx([
 				'flex h-full w-full flex-col justify-between gap-4 sm:w-80',
-				debugClassName,
+				className,
 			])}
+			{...dataAttributes}
 		>
 			<div className={'flex w-full flex-col gap-4'}>
 				<Input
