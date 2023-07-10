@@ -2,25 +2,27 @@ import { signOut } from 'next-auth/react'
 import clsx from 'clsx'
 
 import LogOutIcon from '@/shared/assets/icons/log-out.svg'
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { Button } from '@/shared/ui/Button'
 
 type Props = {
 	withIcon?: boolean
 	withText?: boolean
-}
-export const SignOutButton = ({ withIcon, withText }: Props) => {
-	const { className: debugClassName, ...rest } = useFSDLayerDebug(
-		'features',
-		SignOutButton.name,
-	)
+	className?: string
+} & { [key: `data-${string}`]: string | undefined }
+
+export const SignOutButton = ({
+	withIcon,
+	withText,
+	className,
+	...dataAttributes
+}: Props) => {
 	return (
 		<Button
-			{...rest}
 			onClick={() => {
 				void signOut()
 			}}
-			className={debugClassName}
+			className={className}
+			{...dataAttributes}
 		>
 			{withIcon && <LogOutIcon />}
 			{withText && (

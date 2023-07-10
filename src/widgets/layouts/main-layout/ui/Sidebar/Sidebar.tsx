@@ -18,33 +18,62 @@ type Props = {
 }
 export const Sidebar = memo(
 	({ isCollapsed, toggleCollapsed, className }: Props) => {
-		const { className: debugClassName, ...rest } = useFSDLayerDebug(
-			'widgets',
-			Sidebar.displayName ?? '',
-		)
+		const { className: sidebarDebugClassName, ...kanbanDataAttributes } =
+			useFSDLayerDebug('widgets', Sidebar.displayName ?? '')
+		const {
+			className: pofilePreviewDebugClassName,
+			...profilePreviewDataAttributes
+		} = useFSDLayerDebug('entities', ProfilePreview.name)
+		const {
+			className: navigationBarDebugClassName,
+			...navigationBarDataAttributes
+		} = useFSDLayerDebug('features', NavigationBar.name)
+		const {
+			className: themeToggleButtonDebugClassName,
+			...themeToggleButtonDataAttributes
+		} = useFSDLayerDebug('features', ThemeToggleButton.name)
+		const {
+			className: signOutButtonDebugClassName,
+			...signOutButtonDataAttributes
+		} = useFSDLayerDebug('features', SignOutButton.name)
+
 		return (
 			<aside
-				{...rest}
 				className={clsx([
 					'grid h-full grid-rows-[auto_1fr_auto] overflow-hidden bg-white drop-shadow-sm dark:bg-neutral-700',
 					className,
-					debugClassName,
+					sidebarDebugClassName,
 				])}
+				{...kanbanDataAttributes}
 			>
 				<Section>
-					<ProfilePreview withName={!isCollapsed} />
+					<ProfilePreview
+						className={pofilePreviewDebugClassName}
+						withName={!isCollapsed}
+						{...profilePreviewDataAttributes}
+					/>
 				</Section>
 				<Section>
-					<NavigationBar isCollapsed={isCollapsed} />
+					<NavigationBar
+						className={navigationBarDebugClassName}
+						isCollapsed={isCollapsed}
+						{...navigationBarDataAttributes}
+					/>
 					<button onClick={toggleCollapsed}>
 						{isCollapsed ? 'show' : 'hide'}
 					</button>
 				</Section>
 				<Section>
-					<ThemeToggleButton withLabel={!isCollapsed} />
+					<ThemeToggleButton
+						className={themeToggleButtonDebugClassName}
+						withLabel={!isCollapsed}
+						{...themeToggleButtonDataAttributes}
+					/>
 					<SignOutButton
+						className={signOutButtonDebugClassName}
 						withIcon={isCollapsed}
 						withText={!isCollapsed}
+						{...signOutButtonDataAttributes}
 					/>
 				</Section>
 			</aside>

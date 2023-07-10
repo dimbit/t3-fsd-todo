@@ -1,24 +1,22 @@
 import Link from 'next/link'
 import clsx from 'clsx'
 
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
-
 import { navigation } from '../model'
 
 type Props = {
 	isCollapsed?: boolean
-}
+	className?: string
+} & { [key: `data-${string}`]: string | undefined }
 
-export const NavigationBar = ({ isCollapsed }: Props) => {
-	const { className: debugClassName, ...rest } = useFSDLayerDebug(
-		'features',
-		NavigationBar.name,
-	)
-
+export const NavigationBar = ({
+	isCollapsed,
+	className,
+	...dataAttributes
+}: Props) => {
 	return (
 		<ul
-			{...rest}
-			className={clsx(['grid grid-flow-row content-start', debugClassName])}
+			className={clsx(['grid grid-flow-row content-start', className])}
+			{...dataAttributes}
 		>
 			{navigation.map(({ name, Icon, href }) => {
 				return (

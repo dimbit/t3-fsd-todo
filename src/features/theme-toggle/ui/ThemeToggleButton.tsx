@@ -1,32 +1,31 @@
 import clsx from 'clsx'
 
 import MoonIcon from '@/shared/assets/icons/moon.svg'
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { Switch } from '@/shared/ui'
 
 import { useThemeToggle } from '../model'
 
 type Props = {
 	withLabel?: boolean
-}
+	className?: string
+} & { [key: `data-${string}`]: string | undefined }
 
-export const ThemeToggleButton = ({ withLabel }: Props) => {
+export const ThemeToggleButton = ({
+	withLabel,
+	className,
+	...dataAttributes
+}: Props) => {
 	const { theme, toggleTheme } = useThemeToggle()
-
-	const { className: debugClassName, ...rest } = useFSDLayerDebug(
-		'features',
-		ThemeToggleButton.name,
-	)
 
 	return (
 		<div
-			{...rest}
 			className={clsx([
 				'grid justify-start text-neutral-500 dark:text-neutral-300',
 				'whitespace-nowrap',
 				withLabel && 'grid-cols-[auto_auto_1fr] gap-2',
-				debugClassName,
+				className,
 			])}
+			{...dataAttributes}
 		>
 			{withLabel && (
 				<>

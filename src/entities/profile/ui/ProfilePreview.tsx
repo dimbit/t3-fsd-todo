@@ -1,30 +1,28 @@
 import { useSession } from 'next-auth/react'
 import clsx from 'clsx'
 
-import { useFSDLayerDebug } from '@/shared/lib/FSDDebug'
 import { Avatar } from '@/shared/ui'
 
 type Props = {
 	className?: string
 	withName?: boolean
-}
-export const ProfilePreview = ({ className, withName }: Props) => {
-	const { data: session } = useSession()
+} & { [key: `data-${string}`]: string | undefined }
 
-	const { className: debugClassName, ...rest } = useFSDLayerDebug(
-		'entities',
-		ProfilePreview.name,
-	)
+export const ProfilePreview = ({
+	className,
+	withName,
+	...dataAttributes
+}: Props) => {
+	const { data: session } = useSession()
 
 	return (
 		<div
-			{...rest}
 			className={clsx([
 				'grid h-12 grid-rows-2',
 				withName && 'grid-cols-auto-1fr gap-x-2',
 				className,
-				debugClassName,
 			])}
+			{...dataAttributes}
 		>
 			<Avatar
 				src={session?.user.image}
