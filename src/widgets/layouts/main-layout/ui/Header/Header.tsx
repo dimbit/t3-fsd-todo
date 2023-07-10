@@ -15,6 +15,11 @@ export const Header = memo(({ openMobileSidebar }: Props) => {
 		'widgets',
 		Header.displayName ?? '',
 	)
+	const {
+		className: addTaskButtonDebugClassName,
+		...addTaskButtonDataAttributes
+	} = useFSDLayerDebug('features', AddTaskButton.name)
+
 	return (
 		<div
 			{...rest}
@@ -30,7 +35,12 @@ export const Header = memo(({ openMobileSidebar }: Props) => {
 			>
 				<HamburgerIcon />
 			</Button>
-			<AddTaskButton>Add task</AddTaskButton>
+			<AddTaskButton
+				className={addTaskButtonDebugClassName}
+				{...addTaskButtonDataAttributes}
+			>
+				Add task
+			</AddTaskButton>
 		</div>
 	)
 })
