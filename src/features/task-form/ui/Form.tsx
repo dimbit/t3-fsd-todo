@@ -13,7 +13,8 @@ import { DeleteButton } from './DeleteButton'
 
 type Props = Partial<FormData> & {
 	onSubmit: SubmitHandler<FormData>
-	onDelete?: (() => void) | null
+	onDelete: SubmitHandler<FormData>
+	withDeleteButton?: boolean
 }
 
 export const Form = ({
@@ -22,11 +23,12 @@ export const Form = ({
 	status,
 	onSubmit,
 	onDelete,
+	withDeleteButton,
 }: Props) => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isSubmitting },
 	} = useForm<FormData>({
 		defaultValues: {
 			title,
@@ -35,8 +37,6 @@ export const Form = ({
 		},
 		resolver: zodResolver(formSchema),
 	})
-
-	const withDeleteButton = !!onDelete
 
 	const statusOptions = Object.keys(Status).map((status) => {
 		return {
@@ -49,6 +49,8 @@ export const Form = ({
 		'features',
 		Form.name,
 	)
+
+	const handleDelete = handleSubmit(onDelete)
 
 	return (
 		<form
@@ -64,16 +66,19 @@ export const Form = ({
 					placeholder={'Title'}
 					autoFocus
 					error={errors.title?.message}
+					disabled={isSubmitting}
 					{...register('title')}
 				/>
 				<TextArea
 					rows={10}
 					placeholder={'Description'}
 					error={errors.description?.message}
+					disabled={isSubmitting}
 					{...register('description')}
 				/>
 				<Select
 					{...register('status')}
+					disabled={isSubmitting}
 					options={statusOptions}
 				/>
 			</div>
@@ -83,8 +88,18 @@ export const Form = ({
 					withDeleteButton && 'grid-cols-1fr-auto',
 				])}
 			>
-				<Button type='submit'>Save</Button>
-				{onDelete && <DeleteButton onClick={onDelete} />}
+				<Button
+					type='submit'
+					disabled={isSubmitting}
+				>
+					Save
+				</Button>
+				{withDeleteButton && (
+					<DeleteButton
+						disabled={isSubmitting}
+						onClick={handleDelete}
+					/>
+				)}
 			</div>
 		</form>
 	)

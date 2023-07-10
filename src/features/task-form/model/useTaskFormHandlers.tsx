@@ -6,7 +6,6 @@ import type { FormData } from './types'
 export const useTaskFormHandlers = () => {
 	const closeModal = useTaskModalStore.use.closeModal()
 	const taskInitialData = useTaskModalStore.use.taskInitialData()
-
 	const trpcUtils = api.useContext()
 
 	const taskEditingMutation = api.tasks.updateOne.useMutation({
@@ -42,7 +41,7 @@ export const useTaskFormHandlers = () => {
 
 	const onSubmitEditing = (formData: FormData) => {
 		if (!taskInitialData?.id) return
-		taskEditingMutation.mutate({
+		return taskEditingMutation.mutateAsync({
 			id: taskInitialData.id,
 			title: formData.title,
 			description: formData.description ?? undefined,
@@ -51,7 +50,7 @@ export const useTaskFormHandlers = () => {
 	}
 
 	const onSubmitCreation = (formData: FormData) => {
-		taskCreationMutation.mutate({
+		return taskCreationMutation.mutateAsync({
 			title: formData.title,
 			description: formData.description ?? undefined,
 			status: formData.status,
@@ -60,7 +59,7 @@ export const useTaskFormHandlers = () => {
 
 	const onDeleteTask = () => {
 		if (!taskInitialData?.id) return
-		taskDeletionMutation.mutate({
+		return taskDeletionMutation.mutateAsync({
 			id: taskInitialData.id,
 		})
 	}
