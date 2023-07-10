@@ -1,2 +1,2 @@
 export { AddTaskButton } from './AddTaskButton'
-export { TaskModal } from './TaskModal'
+export { TaskFormModal } from './TaskFormModal'

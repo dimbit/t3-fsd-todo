@@ -17,7 +17,7 @@ type Props = Partial<FormData> & {
 	className?: string
 } & { [key: `data-${string}`]: string | undefined }
 
-export const Form = ({
+export const TaskForm = ({
 	title,
 	description,
 	status,

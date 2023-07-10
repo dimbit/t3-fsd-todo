@@ -3,9 +3,9 @@ import { useFSDLayerDebug } from '@/features/fsd-debug'
 import { Modal } from '@/entities/modal'
 
 import { useTaskFormHandlers, useTaskModalStore } from '../model'
-import { Form } from './Form'
+import { TaskForm } from './TaskForm'
 
-export const TaskModal = () => {
+export const TaskFormModal = () => {
 	const isOpen = useTaskModalStore.use.isOpen()
 	const closeModal = useTaskModalStore.use.closeModal()
 	const mode = useTaskModalStore.use.mode?.()
@@ -14,8 +14,8 @@ export const TaskModal = () => {
 	const { onSubmitEditing, onSubmitCreation, onDeleteTask } =
 		useTaskFormHandlers()
 
-	const { className: formDebugClassName, ...formDataAttributes } =
-		useFSDLayerDebug('features', Form.name)
+	const { className: taskFormDebugClassName, ...taskFormDataAttributes } =
+		useFSDLayerDebug('features', TaskForm.name)
 	const { className: modalClassName, ...modalDataAttributes } =
 		useFSDLayerDebug('entities', Modal.name)
 
@@ -26,15 +26,15 @@ export const TaskModal = () => {
 			className={modalClassName}
 			{...modalDataAttributes}
 		>
-			<Form
-				className={formDebugClassName}
+			<TaskForm
+				className={taskFormDebugClassName}
 				title={taskInitialData?.title}
 				description={taskInitialData?.description}
 				status={taskInitialData?.status}
 				onSubmit={mode === 'editing' ? onSubmitEditing : onSubmitCreation}
 				onDelete={onDeleteTask}
 				withDeleteButton={mode === 'editing'}
-				{...formDataAttributes}
+				{...taskFormDataAttributes}
 			/>
 		</Modal>
 	)

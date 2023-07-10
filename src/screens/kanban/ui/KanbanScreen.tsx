@@ -1,5 +1,5 @@
 import { FSDDebugForm } from '@/features/fsd-debug'
-import { TaskModal } from '@/features/task-form'
+import { TaskFormModal } from '@/features/task-form'
 
 import { Kanban } from '@/widgets/kanban'
 import { MainLayout } from '@/widgets/layouts'
@@ -11,7 +11,7 @@ export const KanbanScreen = () => {
 				<Kanban />
 			</MainLayout>
 			<FSDDebugForm />
-			<TaskModal />
+			<TaskFormModal />
 		</>
 	)
 }
