@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
+import { devtools } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
 import { createSelectors } from '@/shared/lib'
@@ -21,18 +21,16 @@ const initialState = {
 }
 
 export const useFSDDebugStoreBase = create<State & Actions>()(
-	persist(
-		devtools(
-			immer((set) => ({
-				...initialState,
+	devtools(
+		immer((set) => ({
+			...initialState,
 
-				toggleLayer: (layer) => {
-					set((state) => {
-						state[layer] = !state[layer]
-					})
-				},
-			})),
-		),
+			toggleLayer: (layer) => {
+				set((state) => {
+					state[layer] = !state[layer]
+				})
+			},
+		})),
 		{ name: 'FSDDebugStore' },
 	),
 )
