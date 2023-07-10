@@ -2,7 +2,7 @@
 
 This is a simple to-do app to practise [Feature-Sliced Design](https://feature-sliced.design/) methodology with [T3 Stack](https://create.t3.gg/)
 
-Demo: https://t3-fsd-todo.vercel.app/ (Discord is required for OAuth)
+Demo: https://t3-fsd-todo.vercel.app/
 
 <picture >
   <source media="(prefers-color-scheme: dark)" srcset="https://create.t3.gg/images/t3-light.svg">
