@@ -7,7 +7,7 @@ type Option = {
 }
 type Props = {
 	options: Option[]
-}
+} & React.ComponentProps<'select'>
 
 export const Select = forwardRef<HTMLSelectElement, Props>(
 	({ options, ...props }, ref) => {
@@ -15,9 +15,9 @@ export const Select = forwardRef<HTMLSelectElement, Props>(
 			<select
 				ref={ref}
 				className={clsx([
-					'cursor-pointer rounded border px-4 py-2 shadow outline-none',
+					'rounded border px-4 py-2 shadow outline-none',
 					'border-neutral-200 bg-white dark:border-neutral-500 dark:bg-neutral-700',
-					'focus:bg-neutral-100 enabled:hover:bg-neutral-100 focus:dark:bg-neutral-600 enabled:dark:hover:bg-neutral-600',
+					'focus:bg-neutral-100 enabled:cursor-pointer enabled:hover:bg-neutral-100 focus:dark:bg-neutral-600 enabled:dark:hover:bg-neutral-600',
 				])}
 				{...props}
 			>
